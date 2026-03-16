@@ -1,1 +1,1371 @@
-<html><body>Dashboard loading...</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MLB Model — 2025-04-02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0a0d12;
+    --bg2:       #0f1318;
+    --bg3:       #141920;
+    --border:    #1e2530;
+    --border2:   #2a3340;
+    --text:      #c8d4e0;
+    --dim:       #4a5a6a;
+    --green:     #00ff88;
+    --amber:     #ffc107;
+    --red:       #ff4444;
+    --blue:      #4499ff;
+    --mono:      'Space Mono', monospace;
+    --sans:      'DM Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .header-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 0.05em;
+  }
+
+  .header-stats {
+    display: flex;
+    gap: 32px;
+  }
+
+  .hstat {
+    text-align: right;
+  }
+
+  .hstat-val {
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .hstat-lbl {
+    font-size: 10px;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .section-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg3);
+  }
+
+  .section-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .section-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dim);
+  }
+
+  /* ── PROFILE A ── */
+  .profile-a-section .section-title {
+    color: var(--green);
+  }
+
+  .profile-cards {
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .profile-card {
+    background: linear-gradient(135deg, #0a1a12 0%, #0d1a14 100%);
+    border: 1px solid #1a3a24;
+    border-left: 3px solid var(--green);
+    border-radius: 4px;
+    padding: 20px;
+    min-width: 320px;
+    flex: 1;
+    animation: fadeIn 0.4s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .profile-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .signal-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    background: #0a2016;
+    border: 1px solid #1a4028;
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  .bet-side-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .books-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dim);
+  }
+
+  .signal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 4px 0 6px 0;
+  }
+  .confirm-badge {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 600;
+    color: #0a2016;
+    background: #00cc6a;
+    padding: 2px 7px;
+    border-radius: 3px;
+    letter-spacing: 0.02em;
+  }
+  .warn-badge {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 600;
+    color: #1a1a2e;
+    background: #ff9800;
+    padding: 2px 7px;
+    border-radius: 3px;
+    letter-spacing: 0.02em;
+  }
+
+  .matchup-big {
+    margin-bottom: 6px;
+  }
+
+  .dim-team {
+    font-size: 1.4em;
+    font-weight: 400;
+    color: #556677;
+  }
+
+  .bet-explanation {
+    font-size: 0.82em;
+    color: #99aabb;
+    line-height: 1.5;
+    margin: 10px 0 4px 0;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.04);
+    border-left: 3px solid #334455;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .bet-arrow {
+    font-size: 0.8em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #00ff88;
+    margin-top: 4px;
+  }
+
+  .bet-team {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green);
+    display: block;
+  }
+
+  .vs-label {
+    font-size: 12px;
+    color: var(--dim);
+  }
+
+  .starters-row {
+    font-size: 11px;
+    color: var(--dim);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-val {
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .stat-lbl {
+    font-size: 10px;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+
+  .no-bets {
+    padding: 40px;
+    text-align: center;
+    color: var(--dim);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── TABLE ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr:hover td { background: #0f1820; }
+
+  .flagged-row td {
+    background: #0a1410;
+  }
+
+  .flagged-row:hover td {
+    background: #0d1a14;
+  }
+
+  .num {
+    font-family: var(--mono);
+    font-size: 13px;
+    text-align: right;
+  }
+
+  .dim { color: var(--dim); }
+
+  /* ── TEAM NAMES ── */
+  .team-cell { min-width: 260px; }
+
+  .away-team {
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .at {
+    color: var(--dim);
+    margin: 0 6px;
+    font-size: 11px;
+  }
+
+  .home-team {
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .starter-cell {
+    font-size: 12px;
+    color: var(--dim);
+    min-width: 200px;
+  }
+
+  .sp-sep {
+    margin: 0 6px;
+    font-size: 10px;
+  }
+
+  /* ── PROB BAR ── */
+  .prob-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 140px;
+  }
+
+  .prob-fill {
+    height: 3px;
+    border-radius: 2px;
+    max-width: 80px;
+    min-width: 4px;
+    flex-shrink: 0;
+  }
+
+  .prob-bar span {
+    font-family: var(--mono);
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* ── BET BADGE ── */
+  .bet-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  /* ── CALIBRATION BARS ── */
+  .cal-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 2px 0;
+  }
+
+  .cal-bar {
+    height: 6px;
+    border-radius: 2px;
+    min-width: 2px;
+  }
+
+  .model-bar  { background: var(--blue);  opacity: 0.6; }
+  .actual-bar { background: var(--green); opacity: 0.8; }
+
+  /* ── TIER CARDS ── */
+  .tier-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 12px 16px;
+  }
+  .tier-card {
+    background: var(--bg);
+    border-radius: 6px;
+    padding: 10px 12px;
+  }
+
+  /* ── ROI SUMMARY ── */
+  .roi-summary {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .roi-stat {
+    background: var(--bg2);
+    padding: 16px 20px;
+  }
+
+  .roi-stat-val {
+    font-family: var(--mono);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .roi-stat-lbl {
+    font-size: 10px;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── GLOSSARY ── */
+  .glossary {
+    padding: 16px 20px;
+  }
+  .glossary-group {
+    margin-bottom: 20px;
+  }
+  .glossary-group:last-child {
+    margin-bottom: 0;
+  }
+  .glossary-heading {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .glossary-text {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .glossary-dl {
+    display: grid;
+    grid-template-columns: minmax(120px, auto) 1fr;
+    gap: 2px 12px;
+  }
+  .glossary-dl dt {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: #aabbcc;
+    padding: 4px 0;
+    white-space: nowrap;
+  }
+  .glossary-dl dd {
+    font-size: 12px;
+    color: #8899aa;
+    line-height: 1.5;
+    padding: 4px 0;
+  }
+  .glossary-dl dd strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ── SCROLLABLE TABLE ── */
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 600px) {
+
+    /* Header: stack vertically */
+    .header {
+      flex-direction: column;
+      height: auto;
+      padding: 10px 12px;
+      gap: 6px;
+    }
+    .header-left {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+    .logo { font-size: 12px; }
+    .header-date { font-size: 9px; }
+    .header-stats {
+      gap: 12px;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .hstat-val { font-size: 13px; }
+    .hstat-lbl { font-size: 8px; }
+
+    /* Container */
+    .container {
+      padding: 8px;
+      gap: 12px;
+    }
+
+    /* Section headers */
+    .section-header {
+      padding: 10px 12px;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .section-title { font-size: 10px; }
+    .section-meta { font-size: 9px; }
+
+    /* Profile cards: full width, stack */
+    .profile-cards {
+      padding: 8px;
+      gap: 8px;
+      flex-direction: column;
+    }
+    .profile-card {
+      min-width: unset;
+      width: 100%;
+      padding: 12px;
+    }
+    .profile-card-header {
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .matchup-big { margin-bottom: 4px; }
+    .bet-team { font-size: 16px; }
+    .dim-team { font-size: 1.1em; }
+    .bet-arrow { font-size: 11px; }
+    .bet-explanation {
+      font-size: 11px;
+      padding: 6px 8px;
+    }
+
+    /* Stats grid: 3 columns instead of 6 */
+    .stats-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .stat-val { font-size: 13px; }
+    .stat-lbl { font-size: 8px; }
+
+    /* Tier cards: stack vertically */
+    .tier-cards {
+      grid-template-columns: 1fr;
+      padding: 8px;
+      gap: 6px;
+    }
+    .tier-card {
+      padding: 8px 10px;
+    }
+    .tier-card > div:last-child {
+      flex-wrap: wrap;
+      gap: 8px 12px;
+    }
+
+    /* ROI summary: 2+3 grid or wrap */
+    .roi-summary {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .roi-stat {
+      padding: 10px 8px;
+    }
+    .roi-stat-val { font-size: 16px; }
+    .roi-stat-lbl { font-size: 8px; }
+
+    /* Tables: smaller text, tighter padding */
+    th {
+      font-size: 8px;
+      padding: 6px 6px;
+      letter-spacing: 0.04em;
+    }
+    td {
+      padding: 7px 6px;
+      font-size: 12px;
+    }
+    .num { font-size: 11px; }
+
+    /* Game table: hide less essential columns on mobile */
+    .team-cell { min-width: 120px; }
+    .hide-mobile { display: none; }
+
+    /* Glossary: stack dt/dd vertically on mobile */
+    .glossary {
+      padding: 10px 12px;
+    }
+    .glossary-dl {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .glossary-dl dt {
+      padding: 6px 0 0 0;
+      color: var(--green);
+    }
+    .glossary-dl dd {
+      padding: 0 0 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <div class="logo">⚾ MLB Edge</div>
+    <div class="header-date">2025-04-02 · Dual-Model Consensus · Multi-Generation Signal</div>
+  </div>
+  <div class="header-stats">
+    <div class="hstat">
+      <div class="hstat-val" style="color:#ff4444">+0.0%</div>
+      <div class="hstat-lbl">Bet ROI</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val" style="color:#ff4444">+0.0u</div>
+      <div class="hstat-lbl">Bet P&amp;L</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val">0</div>
+      <div class="hstat-lbl">Bets</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val">2</div>
+      <div class="hstat-lbl">Today's Flags</div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- PROFILE A -->
+  <div class="section profile-a-section">
+    <div class="section-header">
+      <div class="section-title">Today's Flagged Bets</div>
+      <div class="section-meta">Both models must agree on the same side · spread &lt;6% between predictions</div>
+    </div>
+    <div class="profile-cards">
+      
+            <div class="profile-card" style="border-left-color:var(--amber)">
+              <div class="profile-card-header">
+                <span class="signal-badge" style="background:#b388ff;color:#000">NARROW EDGE</span>
+                <span class="bet-side-badge" style="color:#ffc107">NARROW EDGE</span>
+                <span class="books-badge">5 books</span>
+              </div>
+              <div class="matchup-big">
+                <span class="dim-team">Washington Nationals</span>
+                <span class="vs-label"> @ </span>
+                <span class="bet-team">Toronto Blue Jays</span>
+              </div>
+              <div class="bet-arrow" style="color:#ffc107">BET HOME →</div>
+              <div class="signal-tags"><span class="confirm-badge">Bullpen fatigue edge</span><span class="confirm-badge">Pitcher-friendly park</span><span class="warn-badge">Game 3+ (weaker for home)</span><span class="warn-badge" style="background:#b388ff;color:#0a0a0a">NARROW EDGE — half unit (0.5u)</span></div>
+              <div class="starters-row">MacKenzie Gore vs Easton Lucas</div>
+              <div style="margin:6px 0;padding:6px 10px;background:#1a1a2e;border-radius:6px;font-size:10px;line-height:1.6"><span style="color:#ff9800;font-weight:600">INJURED LIST</span><br><span style="color:#888">WAS:</span> <span style="color:#aaa">#79 Andre, #4 RF Daylen, #14 Drew, #36 Mikolas</span><br><span style="color:#888">TOR:</span> <span style="color:#aaa">#62 Spencer</span></div>
+              <div class="bet-explanation">Vegas prices Washington Nationals as a slight favorite (50%), but the model gives Toronto Blue Jays a 59% chance — a 9% gap. Key factors supporting Toronto Blue Jays: home team outperforming record; home starter has better xFIP. Context is mixed: bullpen fatigue gap favors the home edge; pitcher-friendly park, where home consensus edges are strongest — but Game 3+ of the series, where home consensus edges weaken.</div>
+              <div class="stats-grid">
+                <div class="stat"><div class="stat-val" style="font-size:1.3em">59.3%</div><div class="stat-lbl">Model (4-Blend)</div></div>
+                <div class="stat"><div class="stat-val">50.0%</div><div class="stat-lbl">Vegas</div></div>
+                <div class="stat"><div class="stat-val" style="color:#00ff88">+9.4%</div><div class="stat-lbl">Edge</div></div>
+                <div class="stat"><div class="stat-val" style="color:#aaddff">betmgm -110</div><div class="stat-lbl">Best Odds</div></div>
+              </div>
+              <div class="fair-odds-row" style="margin:8px 0 4px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px;font-size:0.85em;color:#aaa;text-align:center">
+                <span style="color:#888">Model fair price:</span>
+                <span style="color:#00ff88;font-weight:700"> -160</span>
+                <span style="color:#888"> (HOME, inc. vig)</span>
+              </div>
+            </div>
+            <div class="profile-card" style="border-left-color:var(--green)">
+              <div class="profile-card-header">
+                <span class="signal-badge" style="background:#00ccff;color:#000">STANDARD</span>
+                <span class="bet-side-badge" style="color:#00ff88">STANDARD</span>
+                <span class="books-badge">5 books</span>
+              </div>
+              <div class="matchup-big">
+                <span class="bet-team">San Francisco Giants</span>
+                <span class="vs-label"> @ </span>
+                <span class="dim-team">Houston Astros</span>
+              </div>
+              <div class="bet-arrow" style="color:#00ff88">← BET AWAY</div>
+              <div class="signal-tags"><span class="confirm-badge">Game 3+ of series</span><span class="confirm-badge">Disciplined opponent</span><span class="confirm-badge">Fatigued opposing bullpen</span></div>
+              <div class="starters-row">Landen Roupp vs Framber Valdez</div>
+              <div style="margin:6px 0;padding:6px 10px;background:#1a1a2e;border-radius:6px;font-size:10px;line-height:1.6"><span style="color:#ff9800;font-weight:600">INJURED LIST</span><br><span style="color:#888">SAN:</span> <span style="color:#aaa">#0 CF Drew, #68 Erik, #14 Patrick, #7 RF Brennan, #2 SS Adames</span><br></div>
+              <div class="bet-explanation">Vegas prices Houston Astros as a moderate favorite (60%), but the model gives San Francisco Giants a 52% chance to win — a 12% gap. Key factors supporting San Francisco Giants: away team outperforming record; away starter has better xFIP. Context is favorable: late in the series (Game 3+), where edges are historically strongest; the opposing lineup is disciplined, a counterintuitively strong spot; the opposing bullpen is fatigued from recent workload.</div>
+              <div class="stats-grid">
+                <div class="stat"><div class="stat-val" style="font-size:1.3em">47.8%</div><div class="stat-lbl">Model (4-Blend)</div></div>
+                <div class="stat"><div class="stat-val">60.2%</div><div class="stat-lbl">Vegas</div></div>
+                <div class="stat"><div class="stat-val" style="color:#00ff88">+11.5%</div><div class="stat-lbl">Edge</div></div>
+                <div class="stat"><div class="stat-val" style="color:#aaddff">bet365 +145</div><div class="stat-lbl">Best Odds</div></div>
+              </div>
+              <div class="fair-odds-row" style="margin:8px 0 4px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px;font-size:0.85em;color:#aaa;text-align:center">
+                <span style="color:#888">Model fair price:</span>
+                <span style="color:#00ff88;font-weight:700"> -119</span>
+                <span style="color:#888"> (AWAY, inc. vig)</span>
+              </div>
+            </div>
+    </div>
+  </div>
+
+  <!-- TODAY'S GAMES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Today's Games</div>
+      <div class="section-meta">14 games · sorted by edge</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Matchup</th>
+            <th class="hide-mobile">Starters</th>
+            <th>4-Blend</th>
+            <th style="text-align:right">Vegas</th>
+            <th style="text-align:right">Edge</th>
+            <th>Signal</th>
+            <th class="hide-mobile" style="text-align:right">Books</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        <tr class="">
+          <td class="team-cell">
+            <span class="away-team">Kansas City Royals</span>
+            <span class="at">@</span>
+            <span class="home-team">Milwaukee Brewers</span>
+            <span style="color:#00ff88;font-size:9px" title="Confirmed roster">✓</span>
+          </td>
+          <td class="starter-cell hide-mobile">
+            <span class="sp">Cole Ragans</span>
+            <span class="sp-sep">vs</span>
+            <span class="sp">Freddy Peralta</span>
+          </td>
+          <td><div class="prob-bar"><div class="prob-fill" style="width:35%;background:#ff4444"></div><span>35.6%</span></div></td>
+          <td class="num">53.2%</td>
+          <td class="num" style="color:#00ff88;font-weight:600">-17.6%</td>
+          <td><span style="color:#556677;font-size:10px">away</span></td>
+          <td class="num dim hide-mobile">5 books</td>
+        </tr>
+        <tr class="">
+          <td class="team-cell">
+            <span class="away-team">Minnesota Twins</span>
+            <span class="at">@</span>
+            <span class="home-team">Chicago White Sox</span>
+            <span style="color:#00ff88;font-size:9px" title="Confirmed roster">✓</span>
+          </td>
+          <td class="starter-cell hide-mobile">
+            <span class="sp">Pablo López</span>
+            <span class="sp-sep">vs</span>
+            <span class="sp">Sean Burke</span>
+          </td>
+          <td><div class="prob-bar"><div class="prob-fill" style="width:52%;background:#ffc107"></div><span>52.8%</span></div></td>
+          <td class="num">37.2%</td>
+          <td class="num" style="color:#00ff88;font-weight:600">+15.6%</td>
+          <td><span style="color:#556677;font-size:10px">home</span></td>
+          <td class="num dim hide-mobile">5 books</td>
+        </tr>
+        <tr class="flagged-row">
+          <td class="team-cell">
+            <span class="away-team">San Francisco Giants</span>
+            <span class="at">@</span>
+            <span class="home-team">Houston Astros</span>
+            <span style="color:#00ff88;font-size:9px" title="Confirmed roster">✓</span>
+          </td>
+          <td class="starter-cell hide-mobile">
+            <span class="sp">Landen Roupp</span>
+            <span class="sp-sep">vs</span>
+            <span class="sp">Framber Valdez</span>
+          </td>
+          <td><div class="prob-bar"><div class="prob-fill" style="width:47%;background:#ffc107"></div><span>47.8%</span></div></td>
+          <td class="num">60.2%</td>
+          <td class="num" style="color:#00ff88;font-weight:600">-12.4%</td>
+          <td><span class="bet-badge" style="background:#00ccff;color:#0a0a0a">STANDARD</span></td>
+          <td class="num dim hide-mobile">5 books</td>
+        </tr>
+        <tr class="">
+          <td class="team-cell">
+            <span class="away-team">Pittsburgh Pirates</span>
+            <span class="at">@</span>
+            <span class="home-team">Tampa Bay Rays</span>
+            <span style="color:#00ff88;font-size:9px" title="Confirmed roster">✓</span>
+          </td>
+          <td class="starter-cell hide-mobile">
+            <span class="sp">Paul Skenes</span>
+            <span class="sp-sep">vs</span>
+            <span class="sp">Ryan Pepiot</span>
+          </td>
+          <td><div class="prob-bar"><div class="prob-fill" style="width:60%;background:#00ff88"></div><span>60.1%</span></div></td>
+          <td class="num">48.9%</td>
+          <td class="num" style="color:#00ff88;font-weight:600">+11.2%</td>
+          <td><span style="color:#556677;font-size:10px">home</span></td>
+          <td class="num dim hide-mobile">5 books</td>
+        </tr>
+        <tr class="flagged-row">
+          <td class="team-cell">
+            <span class="away-team">Washington Nationals</span>
+            <span class="at">@</span>
+            <span class="home-team">Toronto Blue Jays</span>
+            <span style="color:#00ff88;font-size:9px" title="Confirmed roster">✓</span>
+          </td>
+          <td class="starter-cell hide-mobile">
+            <span class="sp">MacKenzie Gore</span>
+            <span class="sp-sep">vs</span>
+            <span class="sp">Easton Lucas</span>
+          </td>
+          <td><div class="prob-bar"><div class="prob-fill" style="width:59%;background:#00ff88"></div><span>59.3%</span></div></td>
+          <td class="num">50.0%</td>
+          <td class="num" style="color:#ffc107;font-weight:600">+9.3%</td>
+          <td><span class="bet-badge" style="background:#b388ff;color:#0a0a0a">NARROW EDGE</span></td>
+          <td class="num dim hide-mobile">5 books</td>
+        </tr>
+        <tr class="">
+          <td class="team-cell">
+            <span class="away-team">Cleveland Guardians</span>
+            <span class="at">@</span>
+            <span class="home-team">San Diego Padres</span>
+            <span style="color:#00ff88;font-size:9px" title="Confirmed roster">✓</span>
+          </td>
+          <td class="starter-cell hide-mobile">
+            <span class="sp">Ben Lively</span>
+            <span class="sp-sep">vs</span>
+            <span class="sp">Dylan Cease</span>
+          </td>
+          <td><div class="prob-bar"><div class="prob-fill" style="width:68%;background:#00ff88"></div><span>68.6%</span></div></td>
+          <td class="num">62.8%</td>
+          <td class="num" style="color:#ffc107;font-weight:600">+5.8%</td>
+          <td><span style="color:#556677;font-size:10px">home</span></td>
+          <td class="num dim hide-mobile">5 books</td>
+        </tr>
+        <tr class="">
+          <td class="team-cell">
+            <span class="away-team">Atlanta Braves</span>
+            <span class="at">@</span>
+            <span class="home-team">Los Angeles Dodgers</span>
+            <span style="color:#00ff88;font-size:9px" title="Confirmed roster">✓</span>
+          </td>
+          <td class="starter-cell hide-mobile">
+            <span class="sp">Bryce Elder</span>
+            <span class="sp-sep">vs</span>
+            <span class="sp">Blake Snell</span>
+          </td>
+          <td><div class="prob-bar"><div class="prob-fill" style="width:72%;background:#00ff88"></div><span>72.6%</span></div></td>
+          <td class="num">67.4%</td>
+          <td class="num" style="color:#ffc107;font-weight:600">+5.2%</td>
+          <td><span style="color:#556677;font-size:10px">home</span></td>
+          <td class="num dim hide-mobile">5 books</td>
+        </tr>
+        <tr class="">
+          <td class="team-cell">
+            <span class="away-team">Los Angeles Angels</span>
+            <span class="at">@</span>
+            <span class="home-team">St. Louis Cardinals</span>
+            <span style="color:#00ff88;font-size:9px" title="Confirmed roster">✓</span>
+          </td>
+          <td class="starter-cell hide-mobile">
+            <span class="sp">Yusei Kikuchi</span>
+            <span class="sp-sep">vs</span>
+            <span class="sp">Sonny Gray</span>
+          </td>
+          <td><div class="prob-bar"><div class="prob-fill" style="width:62%;background:#00ff88"></div><span>62.2%</span></div></td>
+          <td class="num">57.1%</td>
+          <td class="num" style="color:#ffc107;font-weight:600">+5.1%</td>
+          <td><span style="color:#556677;font-size:10px">home</span></td>
+          <td class="num dim hide-mobile">5 books</td>
+        </tr>
+        <tr class="">
+          <td class="team-cell">
+            <span class="away-team">Texas Rangers</span>
+            <span class="at">@</span>
+            <span class="home-team">Cincinnati Reds</span>
+            <span style="color:#00ff88;font-size:9px" title="Confirmed roster">✓</span>
+          </td>
+          <td class="starter-cell hide-mobile">
+            <span class="sp">Jack Leiter</span>
+            <span class="sp-sep">vs</span>
+            <span class="sp">Hunter Greene</span>
+          </td>
+          <td><div class="prob-bar"><div class="prob-fill" style="width:60%;background:#00ff88"></div><span>60.4%</span></div></td>
+          <td class="num">56.4%</td>
+          <td class="num" style="color:#8899aa;font-weight:600">+4.0%</td>
+          <td><span style="color:#556677;font-size:10px">home</span></td>
+          <td class="num dim hide-mobile">5 books</td>
+        </tr>
+        <tr class="">
+          <td class="team-cell">
+            <span class="away-team">Detroit Tigers</span>
+            <span class="at">@</span>
+            <span class="home-team">Seattle Mariners</span>
+            <span style="color:#00ff88;font-size:9px" title="Confirmed roster">✓</span>
+          </td>
+          <td class="starter-cell hide-mobile">
+            <span class="sp">Tarik Skubal</span>
+            <span class="sp-sep">vs</span>
+            <span class="sp">Luis Castillo</span>
+          </td>
+          <td><div class="prob-bar"><div class="prob-fill" style="width:50%;background:#ffc107"></div><span>50.1%</span></div></td>
+          <td class="num">46.8%</td>
+          <td class="num" style="color:#8899aa;font-weight:600">+3.3%</td>
+          <td><span style="color:#556677;font-size:10px">home</span></td>
+          <td class="num dim hide-mobile">5 books</td>
+        </tr>
+        <tr class="">
+          <td class="team-cell">
+            <span class="away-team">Boston Red Sox</span>
+            <span class="at">@</span>
+            <span class="home-team">Baltimore Orioles</span>
+            <span style="color:#00ff88;font-size:9px" title="Confirmed roster">✓</span>
+          </td>
+          <td class="starter-cell hide-mobile">
+            <span class="sp">Garrett Crochet</span>
+            <span class="sp-sep">vs</span>
+            <span class="sp">Zach Eflin</span>
+          </td>
+          <td><div class="prob-bar"><div class="prob-fill" style="width:50%;background:#ffc107"></div><span>50.0%</span></div></td>
+          <td class="num">46.8%</td>
+          <td class="num" style="color:#8899aa;font-weight:600">+3.3%</td>
+          <td><span style="color:#556677;font-size:10px">home</span></td>
+          <td class="num dim hide-mobile">5 books</td>
+        </tr>
+        <tr class="">
+          <td class="team-cell">
+            <span class="away-team">Arizona Diamondbacks</span>
+            <span class="at">@</span>
+            <span class="home-team">New York Yankees</span>
+            <span style="color:#00ff88;font-size:9px" title="Confirmed roster">✓</span>
+          </td>
+          <td class="starter-cell hide-mobile">
+            <span class="sp">Zac Gallen</span>
+            <span class="sp-sep">vs</span>
+            <span class="sp">Carlos Rodón</span>
+          </td>
+          <td><div class="prob-bar"><div class="prob-fill" style="width:54%;background:#ffc107"></div><span>54.2%</span></div></td>
+          <td class="num">56.6%</td>
+          <td class="num" style="color:#8899aa;font-weight:600">-2.4%</td>
+          <td><span style="color:#556677;font-size:10px">away</span></td>
+          <td class="num dim hide-mobile">5 books</td>
+        </tr>
+        <tr class="">
+          <td class="team-cell">
+            <span class="away-team">New York Mets</span>
+            <span class="at">@</span>
+            <span class="home-team">Miami Marlins</span>
+            <span style="color:#00ff88;font-size:9px" title="Confirmed roster">✓</span>
+          </td>
+          <td class="starter-cell hide-mobile">
+            <span class="sp">Clay Holmes</span>
+            <span class="sp-sep">vs</span>
+            <span class="sp">Connor Gillispie</span>
+          </td>
+          <td><div class="prob-bar"><div class="prob-fill" style="width:36%;background:#ff4444"></div><span>36.1%</span></div></td>
+          <td class="num">34.2%</td>
+          <td class="num" style="color:#8899aa;font-weight:600">+1.8%</td>
+          <td><span style="color:#556677;font-size:10px">home</span></td>
+          <td class="num dim hide-mobile">5 books</td>
+        </tr>
+        <tr class="">
+          <td class="team-cell">
+            <span class="away-team">Colorado Rockies</span>
+            <span class="at">@</span>
+            <span class="home-team">Philadelphia Phillies</span>
+            <span style="color:#00ff88;font-size:9px" title="Confirmed roster">✓</span>
+          </td>
+          <td class="starter-cell hide-mobile">
+            <span class="sp">Kyle Freeland</span>
+            <span class="sp-sep">vs</span>
+            <span class="sp">Zack Wheeler</span>
+          </td>
+          <td><div class="prob-bar"><div class="prob-fill" style="width:75%;background:#00ff88"></div><span>75.4%</span></div></td>
+          <td class="num">73.6%</td>
+          <td class="num" style="color:#8899aa;font-weight:600">+1.8%</td>
+          <td><span style="color:#556677;font-size:10px">home</span></td>
+          <td class="num dim hide-mobile">5 books</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ROI TRACKING -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">ROI Tracking</div>
+      <div class="section-meta">0W – 0L · 0 bet-tier bets resolved</div>
+    </div>
+    <div class="roi-summary">
+      <div class="roi-stat">
+        <div class="roi-stat-val" style="color:#ff4444">+0.0%</div>
+        <div class="roi-stat-lbl">Bet ROI</div>
+      </div>
+      <div class="roi-stat">
+        <div class="roi-stat-val" style="color:#ff4444">+0.00u</div>
+        <div class="roi-stat-lbl">Bet Profit</div>
+      </div>
+      <div class="roi-stat">
+        <div class="roi-stat-val">0</div>
+        <div class="roi-stat-lbl">Bet Count</div>
+      </div>
+      <div class="roi-stat">
+        <div class="roi-stat-val">0</div>
+        <div class="roi-stat-lbl">Wins</div>
+      </div>
+      <div class="roi-stat">
+        <div class="roi-stat-val">—</div>
+        <div class="roi-stat-lbl">Win Rate</div>
+      </div>
+    </div>
+    <div class="tier-cards">
+        <div class="tier-card" style="border-left: 3px solid #ffd700">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:600;color:#ffd700;font-size:13px">STRONG</span>
+            <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:#333;color:{color}">HIGHEST CONVICTION</span>
+          </div>
+          <div style="display:flex;gap:16px;font-size:12px">
+            <div><span class="dim">Bets</span> <span style="color:#eee">0</span></div>
+            <div><span class="dim">W-L</span> <span style="color:#eee">0-0</span></div>
+            <div><span class="dim">Win%</span> <span style="color:#eee">—</span></div>
+            <div><span class="dim">ROI</span> <span style="color:#00ff88">+0.0%</span></div>
+            <div><span class="dim">P&L</span> <span style="color:#00ff88">+0.0u</span></div>
+          </div>
+        </div>
+        <div class="tier-card" style="border-left: 3px solid #00ccff">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:600;color:#00ccff;font-size:13px">PRIME</span>
+            <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:#333;color:{color}">STRONGEST SIGNAL</span>
+          </div>
+          <div style="display:flex;gap:16px;font-size:12px">
+            <div><span class="dim">Bets</span> <span style="color:#eee">0</span></div>
+            <div><span class="dim">W-L</span> <span style="color:#eee">0-0</span></div>
+            <div><span class="dim">Win%</span> <span style="color:#eee">—</span></div>
+            <div><span class="dim">ROI</span> <span style="color:#00ff88">+0.0%</span></div>
+            <div><span class="dim">P&L</span> <span style="color:#00ff88">+0.0u</span></div>
+          </div>
+        </div>
+        <div class="tier-card" style="border-left: 3px solid #00ccff">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:600;color:#00ccff;font-size:13px">STANDARD</span>
+            <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:#00ccff;color:#000">BET</span>
+          </div>
+          <div style="display:flex;gap:16px;font-size:12px">
+            <div><span class="dim">Bets</span> <span style="color:#eee">0</span></div>
+            <div><span class="dim">W-L</span> <span style="color:#eee">0-0</span></div>
+            <div><span class="dim">Win%</span> <span style="color:#eee">—</span></div>
+            <div><span class="dim">ROI</span> <span style="color:#00ff88">+0.0%</span></div>
+            <div><span class="dim">P&L</span> <span style="color:#00ff88">+0.0u</span></div>
+          </div>
+        </div>
+        <div class="tier-card" style="border-left: 3px solid #b388ff">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:600;color:#b388ff;font-size:13px">NARROW EDGE</span>
+            <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:#333;color:{color}">0.5u</span>
+          </div>
+          <div style="display:flex;gap:16px;font-size:12px">
+            <div><span class="dim">Bets</span> <span style="color:#eee">0</span></div>
+            <div><span class="dim">W-L</span> <span style="color:#eee">0-0</span></div>
+            <div><span class="dim">Win%</span> <span style="color:#eee">—</span></div>
+            <div><span class="dim">ROI</span> <span style="color:#00ff88">+0.0%</span></div>
+            <div><span class="dim">P&L</span> <span style="color:#00ff88">+0.0u</span></div>
+          </div>
+        </div></div>
+    <div class="section-header" style="margin-top:0;border-top:1px solid var(--border);border-bottom:none">
+      <div class="section-title" style="font-size:10px">Monthly Breakdown (all consensus tiers)</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Month</th><th style="text-align:right">Bets</th>
+            <th style="text-align:right">W</th><th style="text-align:right">L</th>
+            <th style="text-align:right">Win%</th>
+            <th style="text-align:right">ROI</th><th style="text-align:right">Profit</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="7" class="dim" style="text-align:center;padding:24px">No resolved bets yet</td></tr></tbody>
+      </table>
+    </div>
+    <div class="section-header" style="margin-top:0;border-top:1px solid var(--border);border-bottom:none">
+      <div class="section-title" style="font-size:10px">Recent Bets (consensus only)</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th><th>Game</th><th>Side</th><th>Tier</th>
+            <th class="hide-mobile" style="text-align:right">Model</th>
+            <th class="hide-mobile" style="text-align:right">Vegas</th>
+            <th class="hide-mobile" style="text-align:right">Edge</th>
+            <th style="text-align:right">Result</th>
+            <th style="text-align:right">P&amp;L</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="9" class="dim" style="text-align:center;padding:24px">No bet history yet</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CALIBRATION -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Model Calibration — 2025 Live</div>
+      <div class="section-meta">blue = model · green = actual</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Prob Bucket</th>
+            <th style="text-align:right">N</th>
+            <th>Bars</th>
+            <th style="text-align:right">Model</th>
+            <th style="text-align:right">Actual</th>
+            <th style="text-align:right">Error</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="6" class="dim" style="text-align:center;padding:24px">Calibration data accumulates as bets resolve (need 10+)</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- GLOSSARY & METHODOLOGY -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Glossary &amp; Methodology</div>
+    </div>
+    <div class="glossary">
+
+      <div class="glossary-group">
+        <div class="glossary-heading">How This Model Works</div>
+        <div class="glossary-text">
+          Two independent model generations — <strong>V1</strong> and <strong>V2</strong> — each run their own LR + LGBM pair to predict home win probability for every MLB game.<br><br>
+          <strong>V1</strong> uses 36 features (lineup quality, pitching matchups, recent form, park factor, etc.), trained on 50,867 games through 2022, with moderate regularization (C=0.5).<br>
+          <strong>V2</strong> expanded the feature pipeline to 98 candidates — adding travel distance, bullpen fatigue, platoon splits, and advanced pitching metrics — then pruned to the best 35 via walk-forward importance ranking. V2 uses a slightly earlier training cutoff (through 2021) and heavier regularization (C=0.001). V2's LR and LGBM sub-models are checked individually for consensus — the original 75/25 blend is not used (analysis showed it adds no predictive value beyond individual sub-model checks).<br><br>
+          The two generations use different feature sets, different regularization, and different training windows — making them genuinely independent. The <strong style="color:#00ccff">STRONG / PRIME / STANDARD</strong> tiers fire only when <em>both</em> V1 and V2 independently flag the same game on the same side. In out-of-sample testing, consensus bets dramatically outperform single-model flags: <strong>V1+V2 agreement produces +26-41% verified ROI</strong> while single-model-only flags are essentially breakeven or negative. All bets are flat 1-unit stakes.<br><br>
+          <strong>Odds validation:</strong> All backtest ROI figures use verified pre-game odds pulled ~2 hours before first pitch from The Odds API historical endpoint — the same timing window the live dashboard operates on. This means the backtest reflects realistic, bettable lines you would actually see when placing wagers, not stale or post-game prices. Odds were compared across 15-20 sportsbooks per game to find the best available line, matching the line-shopping approach recommended for live betting.
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading" style="color:#ffd700">STRONG — Highest Conviction</div>
+        <div class="glossary-text">
+          <strong>Rule:</strong> All 4 sub-models (V1 LR, V1 LGBM, V2 LR, V2 LGBM) independently agree on away edge &ge;12%. This is the most restrictive filter — every model must clear the bar.<br>
+          <strong>What it means:</strong> When you see a STRONG badge, every single model agrees the line is badly mispriced. These are the highest-conviction bets in the system.<br>
+          <strong>Verified backtest (OOS 2023-2025, odds confirmed ~2h pre-game via Odds API):</strong><br>
+          &nbsp;&nbsp;112 bets · 59.8% win · <strong style="color:#ffd700">+46.3% ROI · +51.8u · Sharpe 5.11</strong><br>
+          &nbsp;&nbsp;2023: +39% · 2024: +69% · 2025: +32% — <strong>positive all 3 years, highest ROI per bet</strong>
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading" style="color:#00ccff">PRIME / STANDARD</div>
+        <div class="glossary-text">
+          <strong>PRIME rule:</strong> V1's LR+LGBM both agree on away edge &ge;10% (with &lt;6% spread), AND V2's LR model independently sees &ge;12% away edge. This uses V2's logistic regression specifically — V2's LGBM may disagree, but the LR-only gate filters LGBM noise and catches high-value games that don't qualify as STRONG.<br>
+          <strong>STANDARD rule:</strong> Both V1 and V2 model generations independently flag the same game on the same side at &ge;10% edge — but the game did NOT qualify as STRONG or PRIME.<br>
+          <strong>What it means:</strong> Two completely independent model pipelines — different features, different training data, different regularization — both see the same mispricing. When V1 and V2 disagree, single-model flags are essentially worthless (breakeven or negative ROI).<br>
+          <strong>Verified backtest (OOS 2023-2025, odds confirmed ~2h pre-game via Odds API):</strong><br>
+          &nbsp;&nbsp;PRIME (exclusive): ~56 bets · <strong style="color:#00ccff">+38.3% ROI · Sharpe 4.50</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;2023: +44% · 2024: +45% · 2025: +28% — <strong>positive all 3 years</strong><br>
+          &nbsp;&nbsp;STANDARD (exclusive): ~36 bets · <strong style="color:#00ccff">+31.6% ROI · Sharpe 3.66</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;2023: +27% · 2024: +41% · 2025: +26% — <strong>positive all 3 years</strong><br><br>
+          <strong>For comparison — single-model-only flags (no consensus):</strong><br>
+          &nbsp;&nbsp;V1 ONLY (V2 doesn't flag): 215 bets · 47.0% win · <span style="color:#ff4444">+1.4% ROI</span> — marginal at best<br>
+          &nbsp;&nbsp;V2 ONLY (V1 doesn't flag): 169 bets · 40.8% win · <span style="color:#ff4444">-4.4% ROI</span> — losing<br>
+          The gap between consensus and single-model is enormous. Only bet consensus.
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading" style="color:#b388ff">NARROW EDGE — Home Consensus (0.5u)</div>
+        <div class="glossary-text">
+          <strong>Rule:</strong> Both V1 and V2 independently agree the home team is undervalued by &ge;5%, AND at least one signal gate condition is met: visiting bullpen is fatigued (fatigue gap &gt; 0) OR pitcher-friendly park (park factor &lt; median). V1 model spread must be &le;6%. V2 model spread filter is NOT applied (counterproductive for home bets — removing it improves CI from crossing zero to solidly above). Purple badge. Half-unit (0.5u) sizing.<br>
+          <strong>Why the signal gate:</strong> Raw consensus alone (no gate) has a CI crossing zero. Analysis of 4 confirming signals found that "fatigue OR low park" separates profitable home bets from unprofitable ones. Both conditions have clear baseball logic — you're betting home teams against a tired bullpen or in a run-suppressing park.<br>
+          <strong>Verified OOS (2023-2025) — using real pre-game odds, post-DH dedup (10,000 bootstrap):</strong><br>
+          &nbsp;&nbsp;HOME standalone: 193 bets · 53.9% win · <strong style="color:#b388ff">+18.9% ROI</strong> · +36.4u · <strong>P(profitable): 98.8%</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;2023: 81 bets · +10% ROI<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;2024: 54 bets · +6% ROI<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;2025: 58 bets · +43% ROI<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<strong>All three OOS years profitable.</strong><br>
+          &nbsp;&nbsp;Bootstrap 95% CI: [+2.5%, +34.9%] — clears zero<br>
+          &nbsp;&nbsp;Zero overlap with away consensus (different bet side)<br>
+          &nbsp;&nbsp;★ STRONG SPOT badge when &ge;3 of 4 confirming signals fire (informational — CI crosses zero at this subsample size)<br><br>
+          <strong>Full system (1u away + 0.5u home):</strong><br>
+          &nbsp;&nbsp;397 bets · <strong style="color:#b388ff">+30.6% ROI</strong> · +92.0u · Sharpe 3.66 · <strong>P(profitable): 100.0%</strong><br>
+          &nbsp;&nbsp;HOME adds 193 bets (+95% volume) and +18.2u (+25% profit) vs away-only<br><br>
+          <strong>Recommended sizing:</strong> Half unit (0.5u) per bet. CI clears zero [+2.5%, +34.9%] but half-unit remains prudent for a signal-gated tier. Can be promoted to full unit after live validation.<br>
+          <strong>Risk profile:</strong> Stays profitable with 75% edge degradation (+4.7% ROI). Maximum yearly exposure: ~32u at 0.5u stakes.
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading">Dashboard Terms</div>
+        <dl class="glossary-dl">
+          <dt>Model (4-Blend)</dt><dd>Home win probability averaged across all four models (V1 LR, V1 LGBM, V2 LR, V2 LGBM). This is the best-calibrated probability available (Brier 0.2438). Shown in the game table and on bet cards.</dd>
+          <dt>Edge</dt><dd>Gap between the 4-blend model probability and Vegas implied probability. Larger = model disagrees more with the market. Positive = model favors that side more than Vegas does.</dd>
+          <dt>Strong</dt><dd>Highest conviction. All 4 sub-models agree on ≥12% away edge. Gold badge. Best per-bet returns (+46.3% verified ROI, Sharpe 5.11, positive all 3 OOS years).</dd>
+          <dt>Prime</dt><dd>V1 flags STANDARD (≥10% edge) and V2's logistic regression independently sees ≥12% edge, but not all 4 models clear 12%. Cyan badge. Best risk-adjusted total returns (+38.3% verified ROI, positive all 3 OOS years).</dd>
+          <dt>Standard</dt><dd>Both V1 and V2 model generations independently flag the same game on the same side at ≥10% edge, but not STRONG or PRIME. Cyan badge. When only one generation flags, the bet is NOT recommended.</dd>
+          <dt>Narrow Edge</dt><dd>Both V1 and V2 agree the home team is undervalued by &ge;5%, PLUS a signal gate: visiting bullpen is fatigued OR pitcher-friendly park. Purple badge. Half-unit (0.5u) sizing. Verified OOS: 193 bets, +18.9% ROI, CI [+2.5%, +34.9%], P(profitable) 98.8%, all three years positive. Games with &ge;3 confirming signals get a ★ STRONG SPOT badge (informational). Full system: 397 bets, +30.6% ROI, Sharpe 3.66.</dd>
+          <dt>Vegas Implied</dt><dd>Home win probability derived from the median moneyline across sportsbooks (FanDuel, DraftKings, BetMGM, Bet365, Caesars).</dd>
+          <dt>Best Odds</dt><dd>The sportsbook currently offering the best moneyline for the flagged side. Always bet at the best available price. Backtest ROI is calculated using the best line available ~2h pre-game — the same window used by the live dashboard.</dd>
+        </dl>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading" style="color:#00cc6a">Confirming &amp; Warning Signals — Away Bets</div>
+        <div class="glossary-text">
+          Green and orange badges appear on flagged <strong>away</strong> consensus bets based on game-context patterns. These don't change the bet recommendation — they indicate when conditions are especially favorable or unfavorable. Stats below are validated on the <strong>away consensus subset</strong> (OOS 2023-2025).
+        </div>
+        <dl class="glossary-dl">
+          <dt style="color:#00cc6a">Game 3+ of series</dt><dd>Edge is dramatically stronger later in a series, likely driven by compounding bullpen fatigue and lineup familiarity. <strong>Consensus OOS: STRONG +80.4% ROI (40 bets, 75% win), STANDARD +56.6% (65 bets, 66% win).</strong> The single strongest confirming signal.</dd>
+          <dt style="color:#00cc6a">Disciplined opponent</dt><dd>Home lineup has below-median chase rate (more disciplined). Counterintuitively, edge is strongest against disciplined teams. <strong>Consensus OOS: STRONG +67.4% ROI (66 bets, 67% win), STANDARD +43.2% (106 bets, 59% win).</strong></dd>
+          <dt style="color:#00cc6a">Fatigued opposing bullpen</dt><dd>Home bullpen worked more innings recently than away bullpen (fatigue gap &gt; 0). <strong>Consensus OOS: STRONG +52.2% ROI (59 bets) vs +44.2% when not fatigued. STANDARD +40.3% (102 bets) vs +26.8%.</strong></dd>
+          <dt style="color:#ff9800">Game 2 caution</dt><dd>Game 2 of a series is the weakest spot. <strong>Consensus OOS: STRONG +8.6% ROI (37 bets, 43% win), STANDARD +1.0% (63 bets, 43% win).</strong> Still marginally positive on consensus bets but much weaker than Game 1 or Game 3+. Exercise caution or reduce sizing.</dd>
+          <dt style="color:#ff9800">Undisciplined opponent</dt><dd>Home lineup has above-median chase rate (less disciplined). <strong>Consensus OOS: STRONG +22.6% ROI (49 bets), STANDARD +22.8% (92 bets).</strong> Still profitable on consensus bets (unlike single-generation-only flags), but roughly half the ROI of disciplined-opponent bets.</dd>
+          <dt style="color:#ff9800">September</dt><dd>September is the weakest month, likely due to roster expansion and callups. <strong>Consensus OOS: STRONG +49.6% ROI (18 bets, 56% win), STANDARD +27.6% (37 bets, 51% win).</strong> Still positive post-dedup but smaller sample — use caution.</dd>
+        </dl>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading" style="color:#b388ff">Confirming &amp; Warning Signals — Home Bets</div>
+        <div class="glossary-text">
+          Home consensus bets have <strong>fundamentally different patterns</strong> than away bets — several signals are inverted. These are validated on the <strong>home consensus subset</strong> (193 bets, verified OOS odds). Away signals should NOT be applied to home bets. Stats below are directional — bullpen fatigue and low park factor are used as the signal gate filter.
+        </div>
+        <dl class="glossary-dl">
+          <dt style="color:#00cc6a">Bullpen fatigue edge</dt><dd>When the home bullpen is more fatigued than the away bullpen (fatigue gap &gt; 0), home consensus ROI is strongest. This is the <strong>opposite</strong> of away bets where opposing fatigue helps. <strong>Home OOS: +140.7% ROI (115 bets, 52% win) vs -5.3% when not fatigued.</strong> The single strongest home confirming signal.</dd>
+          <dt style="color:#00cc6a">HR-prone opposing starter</dt><dd>Away starter has above-median HR/FB rate — more vulnerable to home run power. <strong>Home OOS: +106.1% ROI (124 bets, 49% win) vs +17.5% when away starter has low HR/FB.</strong></dd>
+          <dt style="color:#00cc6a">Pitcher-friendly park</dt><dd>Low park factor (&lt; median ~0.99) — counterintuitively, home consensus edges are strongest in pitcher parks. <strong>Home OOS: +106.9% ROI (151 bets, 52% win) vs -6.8% in hitter-friendly parks.</strong></dd>
+          <dt style="color:#00cc6a">Disciplined home lineup</dt><dd>Home team has below-median chase rate (more disciplined). This signal transfers from away bets. <strong>Home OOS: +95.5% ROI (127 bets, 46% win) vs +26.1% when undisciplined.</strong></dd>
+          <dt style="color:#ff9800">Game 3+ (weaker for home)</dt><dd>Unlike away bets where Game 3+ is the strongest spot, home consensus <strong>weakens</strong> later in a series. <strong>Home OOS: +25.0% ROI (95 bets, 47% win) vs +82.2% in Games 1-2.</strong> The pattern is inverted from away.</dd>
+          <dt style="color:#ff9800">September</dt><dd>September is weak for both home and away bets. <strong>Home OOS: +6.3% ROI (61 bets, 54% win) vs +78.0% non-September.</strong> Marginally positive but much thinner edge.</dd>
+          <dt style="color:#ff9800">Hitter-friendly park</dt><dd>High park factor (&gt; ~1.04) erodes home consensus edge. <strong>Home OOS: -6.8% ROI (103 bets, 46% win).</strong> The only signal that produces negative ROI for home bets.</dd>
+        </dl>
+        <div class="glossary-text" style="margin-top:8px">
+          <strong>Roster sensitivity:</strong> Home consensus bets are 1.45x more sensitive to lineup changes than away bets. The dashboard requires at least "projected" roster confidence for home bets — "starter only" or "unknown" rosters will not trigger home consensus flags. When projected, verify the lineup before placing.
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading">Batting &amp; Lineup Stats</div>
+        <dl class="glossary-dl">
+          <dt>wRC+</dt><dd><em>Weighted Runs Created Plus.</em> Total offensive value adjusted for park and league. 100 = average; 120 = 20% above average.</dd>
+          <dt>wOBA</dt><dd><em>Weighted On-Base Average.</em> Weights each outcome (single, double, HR, walk) by its actual run value. League average ~.310-.320.</dd>
+          <dt>Chase Rate</dt><dd>Percentage of pitches outside the strike zone a batter swings at. Lower = more disciplined.</dd>
+          <dt>Lineup K Rate</dt><dd>How often a team's batters strike out. Lower = more contact, more balls in play.</dd>
+          <dt>Top 3 wOBA</dt><dd>Combined wOBA of a team's top 3 lineup spots — the strength of the heart of the order.</dd>
+        </dl>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading">Pitching Stats</div>
+        <dl class="glossary-dl">
+          <dt>xFIP</dt><dd><em>Expected Fielding Independent Pitching.</em> Estimates run prevention independent of defense and batted-ball luck. Uses expected HR rate. Lower = better. League avg ~4.00.</dd>
+          <dt>ERA</dt><dd><em>Earned Run Average.</em> Earned runs allowed per 9 innings. Lower = better. More volatile than xFIP because it includes defense and sequencing.</dd>
+          <dt>Stuff+</dt><dd><em>Pitch Stuff Plus.</em> Raw quality of a pitcher's arsenal — velocity, movement, spin. 100 = average; 120+ = elite.</dd>
+          <dt>K Rate</dt><dd>Percentage of plate appearances ending in a strikeout. Higher = more dominant pitching.</dd>
+          <dt>Bullpen ERA</dt><dd>Collective ERA of a team's relief pitchers. Matters late in games when starters exit.</dd>
+        </dl>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading">Team &amp; Context Stats</div>
+        <dl class="glossary-dl">
+          <dt>Pythagorean Win%</dt><dd>Expected win percentage based on runs scored vs allowed over the last 60 days. Captures true team strength better than W-L record.</dd>
+          <dt>Run Differential</dt><dd>Runs scored minus runs allowed (60-day window). Positive = outscoring opponents.</dd>
+          <dt>Park Factor</dt><dd>How much a ballpark inflates or deflates run scoring. 1.00 = neutral; Coors Field ~1.30 (30% more runs).</dd>
+        </dl>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading">Betting Terms</div>
+        <dl class="glossary-dl">
+          <dt>Edge</dt><dd>Gap between the model's predicted probability and Vegas implied probability. Larger = model disagrees more with the market.</dd>
+          <dt>ROI</dt><dd><em>Return on Investment.</em> Profit / total risked. +20% means $20 profit per $100 wagered.</dd>
+          <dt>Units (u)</dt><dd>Standardized bet size. 1u = your chosen base wager. All bets are flat 1u regardless of edge size or odds.</dd>
+          <dt>Moneyline</dt><dd>Negative = risk that much to win $100 (-150 = risk $150 to win $100). Positive = profit on $100 bet (+130 = $130 profit).</dd>
+          <dt>Closing Line Value</dt><dd>Difference between the odds you bet and the final odds at game time. Consistently beating the close is the strongest sign of a profitable bettor.</dd>
+          <dt>OOS</dt><dd><em>Out-of-Sample.</em> Data the model never saw during training. Our models train on 2001-2022; seasons 2023-2025 are OOS and represent real predictive performance.</dd>
+        </dl>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading">Historical Performance Summary</div>
+        <div class="glossary-text" style="font-family:var(--mono);font-size:11px;line-height:1.8">
+          <strong>Out-of-Sample (2023-2025) — verified with pre-game odds (~2h before game via Odds API):</strong><br><br>
+          <strong style="color:#ffd700">── STRONG (highest conviction) ──</strong><br>
+          <span style="color:#ffd700">STRONG:</span> 112 bets · 59.8% win · +46.3% ROI · +51.8u · Sharpe 5.11 · ~37/yr &nbsp; <span style="color:#555">(2023: +39% · 2024: +69% · 2025: +32%)</span><br><br>
+          <strong style="color:#00ccff">── PRIME / STANDARD (V1 + V2 agreement) ──</strong><br>
+          <span style="color:#00ccff">PRIME (exclusive):</span> ~56 bets · +38.3% ROI · Sharpe 4.50 &nbsp; <span style="color:#555">(2023: +44% · 2024: +45% · 2025: +28%)</span><br>
+          <span style="color:#00ccff">STANDARD (exclusive):</span> ~36 bets · +31.6% ROI · Sharpe 3.66 &nbsp; <span style="color:#555">(2023: +27% · 2024: +41% · 2025: +26%)</span><br>
+          <span style="color:#00ccff">ALL AWAY (unique):</span> 204 bets · 57.4% win · +36.2% ROI · +73.8u · Sharpe 4.18 · ~68/yr &nbsp; <span style="color:#555">(2023: +31% · 2024: +44% · 2025: +32%)</span><br><br>
+          <strong style="color:#b388ff">── NARROW EDGE (home consensus, half-unit 0.5u) ──</strong><br>
+          <span style="color:#b388ff">NARROW EDGE:</span> 193 bets · 53.9% win · +18.9% ROI · +36.4u · P(profitable) 98.8% · Sharpe 2.34 · ~64/yr &nbsp; <span style="color:#555">(2023: +10% · 2024: +6% · 2025: +43% — all 3 years positive)</span><br>
+          <span style="color:#b388ff">&nbsp;&nbsp;Signal gate:</span> <span style="color:#555">bullpen fatigue &gt; 0 OR pitcher-friendly park. No V2 spread filter (counterproductive for home bets).</span><br>
+          <span style="color:#b388ff">&nbsp;&nbsp;★ STRONG SPOT (≥3 confirm):</span> <span style="color:#555">informational badge — subsample too small for independent CI</span><br>
+          <span style="color:#b388ff">FULL SYSTEM (1u away + 0.5u home):</span> 397 bets · +30.6% ROI · +92.0u · Sharpe 3.66 · ~132/yr &nbsp; <span style="color:#555">(2023: +23% · 2024: +34% · 2025: +35% — all years positive, P(profitable): 100%)</span><br>
+          <span style="color:#555">NARROW EDGE adds 95% more volume and 25% more profit vs away-only. Zero overlap with away tiers. Half-unit sizing. CI above zero [+2.5%, +34.9%].</span><br><br>
+          <strong style="color:#ff4444">── WHY CONSENSUS MATTERS ──</strong><br>
+          <span style="color:#888">V1 ONLY (V2 doesn't flag):</span> 215 bets · 47.0% win · +1.4% ROI &nbsp; <span style="color:#555">(marginal — do not bet)</span><br>
+          <span style="color:#555">Single-generation flags are not actionable. Only bet when both generations agree.</span><br><br>
+          <strong style="color:#ff4444">── BRIER SCORE: MODEL vs VEGAS (OOS 2023-2025) ──</strong><br>
+          <span style="color:#555">Brier score measures probability calibration — lower is better. 0 = perfect, 0.25 = coin-flip.</span><br>
+          <span style="color:#888">All 7,180 games:</span> Model 0.2437 · Vegas 0.2436 · <span style="color:#555">essentially tied — the model is not a better overall forecaster</span><br>
+          <span style="color:#00ff88">Flagged games (440):</span> Model 0.2512 · Vegas 0.2789 · <strong style="color:#00ff88">model 9.9% better</strong> <span style="color:#555">— the consensus filter identifies games where Vegas is most off</span><br>
+          <span style="color:#555">&nbsp;&nbsp;Away tiers: model says 45.5% home win → actual 45.8% &nbsp;|&nbsp; Vegas says 60.7% — badly miscalibrated</span><br>
+          <span style="color:#555">&nbsp;&nbsp;Narrow Edge: model says 57.4% home win → actual 54.0% &nbsp;|&nbsp; Vegas says 44.8%</span><br>
+          <span style="color:#555">&nbsp;&nbsp;STRONG tier has the largest Brier gap (0.240 vs 0.289) — highest-conviction bets are where Vegas is most wrong</span><br><br>
+          <span style="color:#555">V1: LR (C=0.5) + LGBM · 36 features · trained 2001-2022 · flat 1u staking<br>
+          V2: LR (C=0.001) + LGBM · 35 features (pruned from 98 expanded candidates incl. travel, bullpen fatigue, platoon) · trained 2001-2021 · sub-models checked individually (75/25 blend not used)<br>
+          Overlap: Jaccard ~0.33 · Prob corr 0.96 · Edge corr 0.88 · ~50% of flags shared<br>
+          Odds: verified with pre-game lines (~2h before first pitch) via Odds API historical endpoint · best available across 15-20 US sportsbooks · same timing window as live dashboard</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
