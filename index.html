@@ -661,7 +661,7 @@
 <header class="header">
   <div class="header-left">
     <div class="logo">⚾ MLB Edge</div>
-    <div class="header-date">2025-04-02 · Dual-Model Consensus · Multi-Generation Signal</div>
+    <div class="header-date">2025-04-02 · Dual-Model Agreement · Multi-Generation Signal</div>
   </div>
   <div class="header-stats">
     <div class="hstat">
@@ -1108,7 +1108,7 @@
           </div>
         </div></div>
     <div class="section-header" style="margin-top:0;border-top:1px solid var(--border);border-bottom:none">
-      <div class="section-title" style="font-size:10px">Monthly Breakdown (all consensus tiers)</div>
+      <div class="section-title" style="font-size:10px">Monthly Breakdown (all tiers)</div>
     </div>
     <div class="table-wrap">
       <table>
@@ -1124,7 +1124,7 @@
       </table>
     </div>
     <div class="section-header" style="margin-top:0;border-top:1px solid var(--border);border-bottom:none">
-      <div class="section-title" style="font-size:10px">Recent Bets (consensus only)</div>
+      <div class="section-title" style="font-size:10px">Recent Bets</div>
     </div>
     <div class="table-wrap">
       <table>
@@ -1178,8 +1178,8 @@
         <div class="glossary-text">
           Two independent model generations — <strong>V1</strong> and <strong>V2</strong> — each run their own LR + LGBM pair to predict home win probability for every MLB game.<br><br>
           <strong>V1</strong> uses 36 features (lineup quality, pitching matchups, recent form, park factor, etc.), trained on 50,867 games through 2022, with moderate regularization (C=0.5).<br>
-          <strong>V2</strong> expanded the feature pipeline to 98 candidates — adding travel distance, bullpen fatigue, platoon splits, and advanced pitching metrics — then pruned to the best 35 via walk-forward importance ranking. V2 uses a slightly earlier training cutoff (through 2021) and heavier regularization (C=0.001). V2's LR and LGBM sub-models are checked individually for consensus — the original 75/25 blend is not used (analysis showed it adds no predictive value beyond individual sub-model checks).<br><br>
-          The two generations use different feature sets, different regularization, and different training windows — making them genuinely independent. The <strong style="color:#00ccff">STRONG / PRIME / STANDARD</strong> tiers fire only when <em>both</em> V1 and V2 independently flag the same game on the same side. In out-of-sample testing, consensus bets dramatically outperform single-model flags: <strong>V1+V2 agreement produces +26-41% verified ROI</strong> while single-model-only flags are essentially breakeven or negative. All bets are flat 1-unit stakes.<br><br>
+          <strong>V2</strong> expanded the feature pipeline to 98 candidates — adding travel distance, bullpen fatigue, platoon splits, and advanced pitching metrics — then pruned to the best 35 via walk-forward importance ranking. V2 uses a slightly earlier training cutoff (through 2021) and heavier regularization (C=0.001). V2's LR and LGBM sub-models are checked individually for agreement — the original 75/25 blend is not used (analysis showed it adds no predictive value beyond individual sub-model checks).<br><br>
+          The two generations use different feature sets, different regularization, and different training windows — making them genuinely independent. The <strong style="color:#00ccff">STRONG / PRIME / STANDARD</strong> tiers fire only when <em>both</em> V1 and V2 independently flag the same game on the same side. In out-of-sample testing, dual-model agreement bets dramatically outperform single-model flags: <strong>V1+V2 agreement produces +26-41% verified ROI</strong> while single-model-only flags are essentially breakeven or negative. All bets are flat 1-unit stakes.<br><br>
           <strong>Odds validation:</strong> All backtest ROI figures use verified pre-game odds pulled ~2 hours before first pitch from The Odds API historical endpoint — the same timing window the live dashboard operates on. This means the backtest reflects realistic, bettable lines you would actually see when placing wagers, not stale or post-game prices. Odds were compared across 15-20 sportsbooks per game to find the best available line, matching the line-shopping approach recommended for live betting.
         </div>
       </div>
@@ -1206,18 +1206,18 @@
           &nbsp;&nbsp;&nbsp;&nbsp;2023: +44% · 2024: +45% · 2025: +28% — <strong>positive all 3 years</strong><br>
           &nbsp;&nbsp;STANDARD (exclusive): ~36 bets · <strong style="color:#00ccff">+31.6% ROI · Sharpe 3.66</strong><br>
           &nbsp;&nbsp;&nbsp;&nbsp;2023: +27% · 2024: +41% · 2025: +26% — <strong>positive all 3 years</strong><br><br>
-          <strong>For comparison — single-model-only flags (no consensus):</strong><br>
+          <strong>For comparison — single-model-only flags (no dual-model agreement):</strong><br>
           &nbsp;&nbsp;V1 ONLY (V2 doesn't flag): 215 bets · 47.0% win · <span style="color:#ff4444">+1.4% ROI</span> — marginal at best<br>
           &nbsp;&nbsp;V2 ONLY (V1 doesn't flag): 169 bets · 40.8% win · <span style="color:#ff4444">-4.4% ROI</span> — losing<br>
-          The gap between consensus and single-model is enormous. Only bet consensus.
+          The gap between dual-model agreement and single-model is enormous. Only bet when both models agree.
         </div>
       </div>
 
       <div class="glossary-group">
-        <div class="glossary-heading" style="color:#b388ff">NARROW EDGE — Home Consensus (0.5u)</div>
+        <div class="glossary-heading" style="color:#b388ff">NARROW EDGE (0.5u)</div>
         <div class="glossary-text">
           <strong>Rule:</strong> Both V1 and V2 independently agree the home team is undervalued by &ge;5%, AND at least one signal gate condition is met: visiting bullpen is fatigued (fatigue gap &gt; 0) OR pitcher-friendly park (park factor &lt; median). V1 model spread must be &le;6%. V2 model spread filter is NOT applied (counterproductive for home bets — removing it improves CI from crossing zero to solidly above). Purple badge. Half-unit (0.5u) sizing.<br>
-          <strong>Why the signal gate:</strong> Raw consensus alone (no gate) has a CI crossing zero. Analysis of 4 confirming signals found that "fatigue OR low park" separates profitable home bets from unprofitable ones. Both conditions have clear baseball logic — you're betting home teams against a tired bullpen or in a run-suppressing park.<br>
+          <strong>Why the signal gate:</strong> Raw agreement alone (no gate) has a CI crossing zero. Analysis of 4 confirming signals found that "fatigue OR low park" separates profitable home bets from unprofitable ones. Both conditions have clear baseball logic — you're betting home teams against a tired bullpen or in a run-suppressing park.<br>
           <strong>Verified OOS (2023-2025) — using real pre-game odds, post-DH dedup (10,000 bootstrap):</strong><br>
           &nbsp;&nbsp;HOME standalone: 193 bets · 53.9% win · <strong style="color:#b388ff">+18.9% ROI</strong> · +36.4u · <strong>P(profitable): 98.8%</strong><br>
           &nbsp;&nbsp;&nbsp;&nbsp;2023: 81 bets · +10% ROI<br>
@@ -1225,7 +1225,7 @@
           &nbsp;&nbsp;&nbsp;&nbsp;2025: 58 bets · +43% ROI<br>
           &nbsp;&nbsp;&nbsp;&nbsp;<strong>All three OOS years profitable.</strong><br>
           &nbsp;&nbsp;Bootstrap 95% CI: [+2.5%, +34.9%] — clears zero<br>
-          &nbsp;&nbsp;Zero overlap with away consensus (different bet side)<br>
+          &nbsp;&nbsp;Zero overlap with away tiers (different bet side)<br>
           &nbsp;&nbsp;★ STRONG SPOT badge when &ge;3 of 4 confirming signals fire (informational — CI crosses zero at this subsample size)<br><br>
           <strong>Full system (1u away + 0.5u home):</strong><br>
           &nbsp;&nbsp;397 bets · <strong style="color:#b388ff">+30.6% ROI</strong> · +92.0u · Sharpe 3.66 · <strong>P(profitable): 100.0%</strong><br>
@@ -1252,15 +1252,15 @@
       <div class="glossary-group">
         <div class="glossary-heading" style="color:#00cc6a">Confirming &amp; Warning Signals — Away Bets</div>
         <div class="glossary-text">
-          Green and orange badges appear on flagged <strong>away</strong> consensus bets based on game-context patterns. These don't change the bet recommendation — they indicate when conditions are especially favorable or unfavorable. Stats below are validated on the <strong>away consensus subset</strong> (OOS 2023-2025).
+          Green and orange badges appear on flagged <strong>away</strong> bets based on game-context patterns. These don't change the bet recommendation — they indicate when conditions are especially favorable or unfavorable. Stats below are validated on the <strong>away tier subset</strong> (OOS 2023-2025).
         </div>
         <dl class="glossary-dl">
-          <dt style="color:#00cc6a">Game 3+ of series</dt><dd>Edge is dramatically stronger later in a series, likely driven by compounding bullpen fatigue and lineup familiarity. <strong>Consensus OOS: STRONG +80.4% ROI (40 bets, 75% win), STANDARD +56.6% (65 bets, 66% win).</strong> The single strongest confirming signal.</dd>
-          <dt style="color:#00cc6a">Disciplined opponent</dt><dd>Home lineup has below-median chase rate (more disciplined). Counterintuitively, edge is strongest against disciplined teams. <strong>Consensus OOS: STRONG +67.4% ROI (66 bets, 67% win), STANDARD +43.2% (106 bets, 59% win).</strong></dd>
-          <dt style="color:#00cc6a">Fatigued opposing bullpen</dt><dd>Home bullpen worked more innings recently than away bullpen (fatigue gap &gt; 0). <strong>Consensus OOS: STRONG +52.2% ROI (59 bets) vs +44.2% when not fatigued. STANDARD +40.3% (102 bets) vs +26.8%.</strong></dd>
-          <dt style="color:#ff9800">Game 2 caution</dt><dd>Game 2 of a series is the weakest spot. <strong>Consensus OOS: STRONG +8.6% ROI (37 bets, 43% win), STANDARD +1.0% (63 bets, 43% win).</strong> Still marginally positive on consensus bets but much weaker than Game 1 or Game 3+. Exercise caution or reduce sizing.</dd>
-          <dt style="color:#ff9800">Undisciplined opponent</dt><dd>Home lineup has above-median chase rate (less disciplined). <strong>Consensus OOS: STRONG +22.6% ROI (49 bets), STANDARD +22.8% (92 bets).</strong> Still profitable on consensus bets (unlike single-generation-only flags), but roughly half the ROI of disciplined-opponent bets.</dd>
-          <dt style="color:#ff9800">September</dt><dd>September is the weakest month, likely due to roster expansion and callups. <strong>Consensus OOS: STRONG +49.6% ROI (18 bets, 56% win), STANDARD +27.6% (37 bets, 51% win).</strong> Still positive post-dedup but smaller sample — use caution.</dd>
+          <dt style="color:#00cc6a">Game 3+ of series</dt><dd>Edge is dramatically stronger later in a series, likely driven by compounding bullpen fatigue and lineup familiarity. <strong>OOS: STRONG +80.4% ROI (40 bets, 75% win), STANDARD +56.6% (65 bets, 66% win).</strong> The single strongest confirming signal.</dd>
+          <dt style="color:#00cc6a">Disciplined opponent</dt><dd>Home lineup has below-median chase rate (more disciplined). Counterintuitively, edge is strongest against disciplined teams. <strong>OOS: STRONG +67.4% ROI (66 bets, 67% win), STANDARD +43.2% (106 bets, 59% win).</strong></dd>
+          <dt style="color:#00cc6a">Fatigued opposing bullpen</dt><dd>Home bullpen worked more innings recently than away bullpen (fatigue gap &gt; 0). <strong>OOS: STRONG +52.2% ROI (59 bets) vs +44.2% when not fatigued. STANDARD +40.3% (102 bets) vs +26.8%.</strong></dd>
+          <dt style="color:#ff9800">Game 2 caution</dt><dd>Game 2 of a series is the weakest spot. <strong>OOS: STRONG +8.6% ROI (37 bets, 43% win), STANDARD +1.0% (63 bets, 43% win).</strong> Still marginally positive but much weaker than Game 1 or Game 3+. Exercise caution or reduce sizing.</dd>
+          <dt style="color:#ff9800">Undisciplined opponent</dt><dd>Home lineup has above-median chase rate (less disciplined). <strong>OOS: STRONG +22.6% ROI (49 bets), STANDARD +22.8% (92 bets).</strong> Still profitable (unlike single-generation-only flags), but roughly half the ROI of disciplined-opponent bets.</dd>
+          <dt style="color:#ff9800">September</dt><dd>September is the weakest month, likely due to roster expansion and callups. <strong>OOS: STRONG +49.6% ROI (18 bets, 56% win), STANDARD +27.6% (37 bets, 51% win).</strong> Still positive but smaller sample — use caution.</dd>
         </dl>
       </div>
 
@@ -1342,13 +1342,13 @@
           <span style="color:#b388ff">&nbsp;&nbsp;★ STRONG SPOT (≥3 confirm):</span> <span style="color:#555">informational badge — subsample too small for independent CI</span><br>
           <span style="color:#b388ff">FULL SYSTEM (1u away + 0.5u home):</span> 397 bets · +30.6% ROI · +92.0u · Sharpe 3.66 · ~132/yr &nbsp; <span style="color:#555">(2023: +23% · 2024: +34% · 2025: +35% — all years positive, P(profitable): 100%)</span><br>
           <span style="color:#555">NARROW EDGE adds 95% more volume and 25% more profit vs away-only. Zero overlap with away tiers. Half-unit sizing. CI above zero [+2.5%, +34.9%].</span><br><br>
-          <strong style="color:#ff4444">── WHY CONSENSUS MATTERS ──</strong><br>
+          <strong style="color:#ff4444">── WHY DUAL-MODEL AGREEMENT MATTERS ──</strong><br>
           <span style="color:#888">V1 ONLY (V2 doesn't flag):</span> 215 bets · 47.0% win · +1.4% ROI &nbsp; <span style="color:#555">(marginal — do not bet)</span><br>
-          <span style="color:#555">Single-generation flags are not actionable. Only bet when both generations agree.</span><br><br>
+          <span style="color:#555">Single-generation flags are not actionable. Only bet when both model generations agree.</span><br><br>
           <strong style="color:#ff4444">── BRIER SCORE: MODEL vs VEGAS (OOS 2023-2025) ──</strong><br>
           <span style="color:#555">Brier score measures probability calibration — lower is better. 0 = perfect, 0.25 = coin-flip.</span><br>
           <span style="color:#888">All 7,180 games:</span> Model 0.2437 · Vegas 0.2436 · <span style="color:#555">essentially tied — the model is not a better overall forecaster</span><br>
-          <span style="color:#00ff88">Flagged games (440):</span> Model 0.2512 · Vegas 0.2789 · <strong style="color:#00ff88">model 9.9% better</strong> <span style="color:#555">— the consensus filter identifies games where Vegas is most off</span><br>
+          <span style="color:#00ff88">Flagged games (440):</span> Model 0.2512 · Vegas 0.2789 · <strong style="color:#00ff88">model 9.9% better</strong> <span style="color:#555">— the agreement filter identifies games where Vegas is most off</span><br>
           <span style="color:#555">&nbsp;&nbsp;Away tiers: model says 45.5% home win → actual 45.8% &nbsp;|&nbsp; Vegas says 60.7% — badly miscalibrated</span><br>
           <span style="color:#555">&nbsp;&nbsp;Narrow Edge: model says 57.4% home win → actual 54.0% &nbsp;|&nbsp; Vegas says 44.8%</span><br>
           <span style="color:#555">&nbsp;&nbsp;STRONG tier has the largest Brier gap (0.240 vs 0.289) — highest-conviction bets are where Vegas is most wrong</span><br><br>
