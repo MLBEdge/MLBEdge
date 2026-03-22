@@ -192,6 +192,28 @@
     font-size: 10px;
     color: var(--dim);
   }
+  .bell-tip {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .bell-tip:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a2e;
+    color: #e0e0e0;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-family: var(--mono);
+    white-space: nowrap;
+    z-index: 100;
+    pointer-events: none;
+  }
 
   .signal-tags {
     display: flex;
@@ -661,7 +683,7 @@
 <header class="header">
   <div class="header-left">
     <div class="logo">⚾ MLB Edge</div>
-    <div class="header-date">2026-03-22 · Dual-Model Agreement · Multi-Generation Signal</div>
+    <div class="header-date">2026-03-22 · 3-Generation · 6-Model Consensus</div>
   </div>
   <div class="header-stats">
     <div class="hstat">
@@ -712,7 +734,7 @@
             <th style="text-align:right">Vegas</th>
             <th style="text-align:right">Edge</th>
             <th>Signal</th>
-            <th class="hide-mobile" style="text-align:right">Books</th>
+            <th class="hide-mobile" style="text-align:right">Line</th>
           </tr>
         </thead>
         <tbody>
@@ -1002,7 +1024,8 @@
           <dt>Home Edge</dt><dd>V1+V2 ≥4% de-vigged home, spread ≤4%. Green badge. 1u. 432 bets, +12.2% ROI, Sharpe 2.4.</dd>
           <dt>Narrow Edge</dt><dd>V1+V2 home ≥5% + gate (fatigue OR low park). Purple badge. 0.5u. 365 bets, +12.0% ROI, Sharpe 2.1.</dd>
           <dt>🔥 Fatigued</dt><dd>Opposing bullpen heavy 2-day pitch count. Badge fires on any tier — materially improves ROI.</dd>
-          <dt>Vegas Implied</dt><dd>Home win probability derived from the median moneyline across sportsbooks.</dd>
+          <dt>Vegas Implied</dt><dd>Home win probability derived from the modal (most common) moneyline across sportsbooks, de-vigged.</dd>
+          <dt>Line</dt><dd>Modal (most common) American moneyline across sportsbooks — Home / Away.</dd>
           <dt>Best Odds</dt><dd>The sportsbook offering the best moneyline for the flagged side.</dd>
         </dl>
       </div>
