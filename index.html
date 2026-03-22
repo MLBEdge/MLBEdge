@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MLB Model — 2026-03-21</title>
+<title>MLB Model — 2026-03-22</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -661,7 +661,7 @@
 <header class="header">
   <div class="header-left">
     <div class="logo">⚾ MLB Edge</div>
-    <div class="header-date">2026-03-21 · Dual-Model Agreement · Multi-Generation Signal</div>
+    <div class="header-date">2026-03-22 · Dual-Model Agreement · Multi-Generation Signal</div>
   </div>
   <div class="header-stats">
     <div class="hstat">
@@ -689,7 +689,7 @@
   <div class="section profile-a-section">
     <div class="section-header">
       <div class="section-title">Today's Flagged Bets</div>
-      <div class="section-meta">Both models must agree on the same side · spread &lt;6% between predictions</div>
+      <div class="section-meta">Multiple model generations must agree · tier-specific edge and spread thresholds</div>
     </div>
     <div class="profile-cards">
       <div class="no-bets">No flagged bets today</div>
@@ -708,7 +708,7 @@
           <tr>
             <th>Matchup</th>
             <th class="hide-mobile">Starters</th>
-            <th>4-Blend</th>
+            <th>Model</th>
             <th style="text-align:right">Vegas</th>
             <th style="text-align:right">Edge</th>
             <th>Signal</th>
@@ -751,7 +751,8 @@
       </div>
     </div>
     <div class="tier-cards">
-        <div class="tier-card" style="border-left: 3px solid #ffd700">
+        <a href="tier_strong.html" style="text-decoration:none;color:inherit">
+        <div class="tier-card" style="border-left: 3px solid #ffd700;cursor:pointer">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
             <span style="font-weight:600;color:#ffd700;font-size:13px">STRONG</span>
             <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:#333;color:{color}">HIGHEST CONVICTION</span>
@@ -764,10 +765,12 @@
             <div><span class="dim">P&L</span> <span style="color:#00ff88">+0.0u</span></div>
           </div>
         </div>
-        <div class="tier-card" style="border-left: 3px solid #00ccff">
+        </a>
+        <a href="tier_high-edge.html" style="text-decoration:none;color:inherit">
+        <div class="tier-card" style="border-left: 3px solid #ff6b35;cursor:pointer">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-weight:600;color:#00ccff;font-size:13px">PRIME</span>
-            <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:#333;color:{color}">STRONGEST SIGNAL</span>
+            <span style="font-weight:600;color:#ff6b35;font-size:13px">HIGH EDGE</span>
+            <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:#333;color:{color}">ALL 6 ≥9%</span>
           </div>
           <div style="display:flex;gap:16px;font-size:12px">
             <div><span class="dim">Bets</span> <span style="color:#eee">0</span></div>
@@ -777,10 +780,12 @@
             <div><span class="dim">P&L</span> <span style="color:#00ff88">+0.0u</span></div>
           </div>
         </div>
-        <div class="tier-card" style="border-left: 3px solid #00ccff">
+        </a>
+        <a href="tier_consensus-edge.html" style="text-decoration:none;color:inherit">
+        <div class="tier-card" style="border-left: 3px solid #00ccff;cursor:pointer">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-weight:600;color:#00ccff;font-size:13px">STANDARD</span>
-            <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:#00ccff;color:#000">BET</span>
+            <span style="font-weight:600;color:#00ccff;font-size:13px">CONSENSUS EDGE</span>
+            <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:#333;color:{color}">ALL 6 ≥7%</span>
           </div>
           <div style="display:flex;gap:16px;font-size:12px">
             <div><span class="dim">Bets</span> <span style="color:#eee">0</span></div>
@@ -790,7 +795,39 @@
             <div><span class="dim">P&L</span> <span style="color:#00ff88">+0.0u</span></div>
           </div>
         </div>
-        <div class="tier-card" style="border-left: 3px solid #b388ff">
+        </a>
+        <a href="tier_warm-edge.html" style="text-decoration:none;color:inherit">
+        <div class="tier-card" style="border-left: 3px solid #ff9800;cursor:pointer">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:600;color:#ff9800;font-size:13px">WARM EDGE</span>
+            <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:#333;color:{color}">WARM</span>
+          </div>
+          <div style="display:flex;gap:16px;font-size:12px">
+            <div><span class="dim">Bets</span> <span style="color:#eee">0</span></div>
+            <div><span class="dim">W-L</span> <span style="color:#eee">0-0</span></div>
+            <div><span class="dim">Win%</span> <span style="color:#eee">—</span></div>
+            <div><span class="dim">ROI</span> <span style="color:#00ff88">+0.0%</span></div>
+            <div><span class="dim">P&L</span> <span style="color:#00ff88">+0.0u</span></div>
+          </div>
+        </div>
+        </a>
+        <a href="tier_home-edge.html" style="text-decoration:none;color:inherit">
+        <div class="tier-card" style="border-left: 3px solid #4caf50;cursor:pointer">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:600;color:#4caf50;font-size:13px">HOME EDGE</span>
+            <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:#333;color:{color}">1u HOME</span>
+          </div>
+          <div style="display:flex;gap:16px;font-size:12px">
+            <div><span class="dim">Bets</span> <span style="color:#eee">0</span></div>
+            <div><span class="dim">W-L</span> <span style="color:#eee">0-0</span></div>
+            <div><span class="dim">Win%</span> <span style="color:#eee">—</span></div>
+            <div><span class="dim">ROI</span> <span style="color:#00ff88">+0.0%</span></div>
+            <div><span class="dim">P&L</span> <span style="color:#00ff88">+0.0u</span></div>
+          </div>
+        </div>
+        </a>
+        <a href="tier_narrow-edge.html" style="text-decoration:none;color:inherit">
+        <div class="tier-card" style="border-left: 3px solid #b388ff;cursor:pointer">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
             <span style="font-weight:600;color:#b388ff;font-size:13px">NARROW EDGE</span>
             <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:#333;color:{color}">0.5u</span>
@@ -802,7 +839,8 @@
             <div><span class="dim">ROI</span> <span style="color:#00ff88">+0.0%</span></div>
             <div><span class="dim">P&L</span> <span style="color:#00ff88">+0.0u</span></div>
           </div>
-        </div></div>
+        </div>
+        </a></div>
     <div class="section-header" style="margin-top:0;border-top:1px solid var(--border);border-bottom:none">
       <div class="section-title" style="font-size:10px">Monthly Breakdown (all tiers)</div>
     </div>
@@ -842,8 +880,8 @@
   <!-- CALIBRATION -->
   <div class="section">
     <div class="section-header">
-      <div class="section-title">Model Calibration — 2026 Live</div>
-      <div class="section-meta">blue = model · green = actual</div>
+      <div class="section-title">Model Calibration — 2026 All Games</div>
+      <div class="section-meta">6-blend probability vs actual home win rate · blue = model · green = actual</div>
     </div>
     <div class="table-wrap">
       <table>
@@ -872,76 +910,100 @@
       <div class="glossary-group">
         <div class="glossary-heading">How This Model Works</div>
         <div class="glossary-text">
-          Two independent model generations — <strong>V1</strong> and <strong>V2</strong> — each run their own LR + LGBM pair to predict home win probability for every MLB game.<br><br>
-          <strong>V1</strong> uses 36 features (lineup quality, pitching matchups, recent form, park factor, etc.), trained on 50,867 games through 2022, with moderate regularization (C=0.5).<br>
-          <strong>V2</strong> expanded the feature pipeline to 98 candidates — adding travel distance, bullpen fatigue, platoon splits, and advanced pitching metrics — then pruned to the best 35 via walk-forward importance ranking. V2 uses a slightly earlier training cutoff (through 2021) and heavier regularization (C=0.001). V2's LR and LGBM sub-models are checked individually for agreement — the original 75/25 blend is not used (analysis showed it adds no predictive value beyond individual sub-model checks).<br><br>
-          The two generations use different feature sets, different regularization, and different training windows — making them genuinely independent. The <strong style="color:#00ccff">STRONG / PRIME / STANDARD</strong> tiers fire only when <em>both</em> V1 and V2 independently flag the same game on the same side. In out-of-sample testing, dual-model agreement bets dramatically outperform single-model flags: <strong>V1+V2 agreement produces +26-41% verified ROI</strong> while single-model-only flags are essentially breakeven or negative. All bets are flat 1-unit stakes.<br><br>
-          <strong>Odds validation:</strong> All backtest ROI figures use verified pre-game odds pulled ~2 hours before first pitch from The Odds API historical endpoint — the same timing window the live dashboard operates on. This means the backtest reflects realistic, bettable lines you would actually see when placing wagers, not stale or post-game prices. Odds were compared across 15-20 sportsbooks per game to find the best available line, matching the line-shopping approach recommended for live betting.
+          Three independent model generations — <strong>V1</strong>, <strong>V2</strong>, and <strong>V3</strong> — each run LR + LGBM pairs to predict home win probability for every MLB game.<br><br>
+          <strong>V1:</strong> LR (C=0.5) + LGBM · 36 features · trained through 2022<br>
+          <strong>V2:</strong> LR (C=0.001) + LGBM · 35 features (pruned from 98) · trained through 2021<br>
+          <strong>V3:</strong> LR (C=0.001) + LGBM · 35 features · walk-forward retrained through 2025<br><br>
+          <strong>Display probability:</strong> 6-blend (equal weight V1/V2/V3 LR+LGBM), calibration slope 1.007 — the most accurate probability available.<br><br>
+          The three generations use different feature sets, regularization, and training windows — making them genuinely independent. Multi-model agreement dramatically outperforms single-model flags. All performance figures below use <strong>modal de-vigged odds</strong> computed consistently across all tiers.<br><br>
+          <strong>Odds validation:</strong> All backtest ROI figures use verified pre-game odds from The Odds API historical endpoint. Best available line across sportsbooks, matching the line-shopping approach used for live betting.
         </div>
       </div>
 
       <div class="glossary-group">
-        <div class="glossary-heading" style="color:#ffd700">STRONG — Highest Conviction</div>
+        <div class="glossary-heading" style="color:#ffd700">STRONG — Highest Conviction (Away 1u)</div>
         <div class="glossary-text">
-          <strong>Rule:</strong> All 4 sub-models (V1 LR, V1 LGBM, V2 LR, V2 LGBM) independently agree on away edge &ge;12%. This is the most restrictive filter — every model must clear the bar.<br>
-          <strong>What it means:</strong> When you see a STRONG badge, every single model agrees the line is badly mispriced. These are the highest-conviction bets in the system.<br>
-          <strong>Verified backtest (OOS 2023-2025, odds confirmed ~2h pre-game via Odds API):</strong><br>
-          &nbsp;&nbsp;112 bets · 59.8% win · <strong style="color:#ffd700">+46.3% ROI · +51.8u · Sharpe 5.11</strong><br>
-          &nbsp;&nbsp;2023: +39% · 2024: +69% · 2025: +32% — <strong>positive all 3 years, highest ROI per bet</strong>
+          <strong>Rule:</strong> V1+V2 all 4 models ≥10% de-vigged away edge, LR/LGBM spread ≤6% per generation.<br>
+          <strong>OOS 2023-2025 (modal de-vigged):</strong><br>
+          &nbsp;&nbsp;101 bets · 58.4% win · <strong style="color:#ffd700">+40.5% ROI · Sharpe 3.3</strong> · CI [+17%, +73%] · P(+) 100%<br>
+          &nbsp;&nbsp;2023: +31% · 2024: +80% · 2025: +16% — <strong>positive all 3 years</strong>
         </div>
       </div>
 
       <div class="glossary-group">
-        <div class="glossary-heading" style="color:#00ccff">PRIME / STANDARD</div>
+        <div class="glossary-heading" style="color:#ff6b35">HIGH EDGE — All 6 Models (Away 1u)</div>
         <div class="glossary-text">
-          <strong>PRIME rule:</strong> V1's LR+LGBM both agree on away edge &ge;10% (with &lt;6% spread), AND V2's LR model independently sees &ge;12% away edge. This uses V2's logistic regression specifically — V2's LGBM may disagree, but the LR-only gate filters LGBM noise and catches high-value games that don't qualify as STRONG.<br>
-          <strong>STANDARD rule:</strong> Both V1 and V2 model generations independently flag the same game on the same side at &ge;10% edge — but the game did NOT qualify as STRONG or PRIME.<br>
-          <strong>What it means:</strong> Two completely independent model pipelines — different features, different training data, different regularization — both see the same mispricing. When V1 and V2 disagree, single-model flags are essentially worthless (breakeven or negative ROI).<br>
-          <strong>Verified backtest (OOS 2023-2025, odds confirmed ~2h pre-game via Odds API):</strong><br>
-          &nbsp;&nbsp;PRIME (exclusive): ~56 bets · <strong style="color:#00ccff">+38.3% ROI · Sharpe 4.50</strong><br>
-          &nbsp;&nbsp;&nbsp;&nbsp;2023: +44% · 2024: +45% · 2025: +28% — <strong>positive all 3 years</strong><br>
-          &nbsp;&nbsp;STANDARD (exclusive): ~36 bets · <strong style="color:#00ccff">+31.6% ROI · Sharpe 3.66</strong><br>
-          &nbsp;&nbsp;&nbsp;&nbsp;2023: +27% · 2024: +41% · 2025: +26% — <strong>positive all 3 years</strong><br><br>
-          <strong>For comparison — single-model-only flags (no dual-model agreement):</strong><br>
-          &nbsp;&nbsp;V1 ONLY (V2 doesn't flag): 215 bets · 47.0% win · <span style="color:#ff4444">+1.4% ROI</span> — marginal at best<br>
-          &nbsp;&nbsp;V2 ONLY (V1 doesn't flag): 169 bets · 40.8% win · <span style="color:#ff4444">-4.4% ROI</span> — losing<br>
-          The gap between dual-model agreement and single-model is enormous. Only bet when both models agree.
+          <strong>Rule:</strong> All 6 models (V1+V2+V3 LR+LGBM) ≥9% de-vigged away edge, spread ≤6% per generation. V1, V2, V3 all agree away.<br>
+          <strong>OOS 2023-2025 (modal de-vigged):</strong><br>
+          &nbsp;&nbsp;93 bets · 55.9% win · <strong style="color:#ff6b35">+38.0% ROI · Sharpe 2.8</strong> · CI [+15%, +68%] · P(+) 100%<br>
+          &nbsp;&nbsp;2023: +29% · 2024: +72% · 2025: +10% — <strong>positive all 3 years</strong>
         </div>
       </div>
 
       <div class="glossary-group">
-        <div class="glossary-heading" style="color:#b388ff">NARROW EDGE (0.5u)</div>
+        <div class="glossary-heading" style="color:#00ccff">CONSENSUS EDGE — All 6 Models (Away 1u)</div>
         <div class="glossary-text">
-          <strong>Rule:</strong> Both V1 and V2 independently agree the home team is undervalued by &ge;5%, AND at least one signal gate condition is met: visiting bullpen is fatigued (fatigue gap &gt; 0) OR pitcher-friendly park (park factor &lt; median). V1 model spread must be &le;6%. V2 model spread filter is NOT applied (counterproductive for home bets — removing it improves CI from crossing zero to solidly above). Purple badge. Half-unit (0.5u) sizing.<br>
-          <strong>Why the signal gate:</strong> Raw agreement alone (no gate) has a CI crossing zero. Analysis of 4 confirming signals found that "fatigue OR low park" separates profitable home bets from unprofitable ones. Both conditions have clear baseball logic — you're betting home teams against a tired bullpen or in a run-suppressing park.<br>
-          <strong>Verified OOS (2023-2025) — using real pre-game odds, post-DH dedup (10,000 bootstrap):</strong><br>
-          &nbsp;&nbsp;HOME standalone: 193 bets · 53.9% win · <strong style="color:#b388ff">+18.9% ROI</strong> · +36.4u · <strong>P(profitable): 98.8%</strong><br>
-          &nbsp;&nbsp;&nbsp;&nbsp;2023: 81 bets · +10% ROI<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;2024: 54 bets · +6% ROI<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;2025: 58 bets · +43% ROI<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;<strong>All three OOS years profitable.</strong><br>
-          &nbsp;&nbsp;Bootstrap 95% CI: [+2.5%, +34.9%] — clears zero<br>
-          &nbsp;&nbsp;Zero overlap with away tiers (different bet side)<br>
-          &nbsp;&nbsp;★ STRONG SPOT badge when &ge;3 of 4 confirming signals fire (informational — CI crosses zero at this subsample size)<br><br>
-          <strong>Full system (1u away + 0.5u home):</strong><br>
-          &nbsp;&nbsp;397 bets · <strong style="color:#b388ff">+30.6% ROI</strong> · +92.0u · Sharpe 3.66 · <strong>P(profitable): 100.0%</strong><br>
-          &nbsp;&nbsp;HOME adds 193 bets (+95% volume) and +18.2u (+25% profit) vs away-only<br><br>
-          <strong>Recommended sizing:</strong> Half unit (0.5u) per bet. CI clears zero [+2.5%, +34.9%] but half-unit remains prudent for a signal-gated tier. Can be promoted to full unit after live validation.<br>
-          <strong>Risk profile:</strong> Stays profitable with 75% edge degradation (+4.7% ROI). Maximum yearly exposure: ~32u at 0.5u stakes.
+          <strong>Rule:</strong> All 6 models ≥7% de-vigged away edge, spread ≤6% per generation.<br>
+          <strong>OOS 2023-2025 (modal de-vigged):</strong><br>
+          &nbsp;&nbsp;165 bets · 57.0% win · <strong style="color:#00ccff">+35.8% ROI · Sharpe 3.7</strong> · CI [+17%, +55%] · P(+) 100%<br>
+          &nbsp;&nbsp;2023: +23% · 2024: +59% · 2025: +24% — <strong>positive all 3 years</strong>
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading" style="color:#ff9800">WARM EDGE — Temperature Filtered (Away 1u)</div>
+        <div class="glossary-text">
+          <strong>Rule:</strong> V1+V2 ≥8% de-vigged away edge, spread ≤8% per generation, game temperature ≥70°F.<br>
+          <strong>OOS 2023-2025 (modal de-vigged):</strong><br>
+          &nbsp;&nbsp;160 bets · 56.2% win · <strong style="color:#ff9800">+33.9% ROI · Sharpe 3.5</strong> · CI [+15%, +51%] · P(+) 100%<br>
+          &nbsp;&nbsp;2023: +27% · 2024: +54% · 2025: +22% — <strong>positive all 3 years</strong>
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading" style="color:#4caf50">HOME EDGE (Home 1u)</div>
+        <div class="glossary-text">
+          <strong>Rule:</strong> V1+V2 home ≥4% de-vigged, spread ≤4% per generation.<br>
+          <strong>OOS 2023-2025 (modal de-vigged):</strong><br>
+          &nbsp;&nbsp;432 bets · 54.9% win · <strong style="color:#4caf50">+12.2% ROI · Sharpe 2.4</strong> · CI [+1%, +22%] · P(+) 99%<br>
+          &nbsp;&nbsp;2023: +7% · 2024: +16% · 2025: +14% — <strong>positive all 3 years</strong>
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading" style="color:#b388ff">NARROW EDGE (Home 0.5u)</div>
+        <div class="glossary-text">
+          <strong>Rule:</strong> V1+V2 home ≥5% de-vigged + signal gate (bullpen fatigue &gt; 0 OR park factor &lt; 0.99). V1 spread ≤6%. No V2 spread filter. Purple badge. Half-unit sizing.<br>
+          <strong>OOS 2023-2025 (modal de-vigged):</strong><br>
+          &nbsp;&nbsp;365 bets · 53.4% win · <strong style="color:#b388ff">+12.0% ROI · Sharpe 2.1</strong> · CI [+1%, +22%] · P(+) 98%<br>
+          &nbsp;&nbsp;2023: +7% · 2024: +3% · 2025: +25% — <strong>positive all 3 years</strong>
+        </div>
+      </div>
+
+      <div class="glossary-group">
+        <div class="glossary-heading" style="color:#ff6b00">🔥 FATIGUE Overlay</div>
+        <div class="glossary-text">
+          A badge modifier applied to <em>any</em> tier when the opposing bullpen shows 2-day pitch count fatigue. Historical performance improves materially across all tiers when this badge fires:<br>
+          &nbsp;&nbsp;CONSENSUS + FATIGUE: 98 bets · 62.2% win · <strong>+54.0% ROI · Sharpe 4.2</strong><br>
+          &nbsp;&nbsp;WARM + FATIGUE: 101 bets · 61.4% win · <strong>+50.5% ROI · Sharpe 4.0</strong><br>
+          &nbsp;&nbsp;HOME + FATIGUE: 202 bets · 60.4% win · <strong>+21.8% ROI · Sharpe 3.0</strong>
         </div>
       </div>
 
       <div class="glossary-group">
         <div class="glossary-heading">Dashboard Terms</div>
         <dl class="glossary-dl">
-          <dt>Model (4-Blend)</dt><dd>Home win probability averaged across all four models (V1 LR, V1 LGBM, V2 LR, V2 LGBM). This is the best-calibrated probability available (Brier 0.2438). Shown in the game table and on bet cards.</dd>
-          <dt>Edge</dt><dd>Gap between the 4-blend model probability and Vegas implied probability. Larger = model disagrees more with the market. Positive = model favors that side more than Vegas does.</dd>
-          <dt>Strong</dt><dd>Highest conviction. All 4 sub-models agree on ≥12% away edge. Gold badge. Best per-bet returns (+46.3% verified ROI, Sharpe 5.11, positive all 3 OOS years).</dd>
-          <dt>Prime</dt><dd>V1 flags STANDARD (≥10% edge) and V2's logistic regression independently sees ≥12% edge, but not all 4 models clear 12%. Cyan badge. Best risk-adjusted total returns (+38.3% verified ROI, positive all 3 OOS years).</dd>
-          <dt>Standard</dt><dd>Both V1 and V2 model generations independently flag the same game on the same side at ≥10% edge, but not STRONG or PRIME. Cyan badge. When only one generation flags, the bet is NOT recommended.</dd>
-          <dt>Narrow Edge</dt><dd>Both V1 and V2 agree the home team is undervalued by &ge;5%, PLUS a signal gate: visiting bullpen is fatigued OR pitcher-friendly park. Purple badge. Half-unit (0.5u) sizing. Verified OOS: 193 bets, +18.9% ROI, CI [+2.5%, +34.9%], P(profitable) 98.8%, all three years positive. Games with &ge;3 confirming signals get a ★ STRONG SPOT badge (informational). Full system: 397 bets, +30.6% ROI, Sharpe 3.66.</dd>
-          <dt>Vegas Implied</dt><dd>Home win probability derived from the median moneyline across sportsbooks (FanDuel, DraftKings, BetMGM, Bet365, Caesars).</dd>
-          <dt>Best Odds</dt><dd>The sportsbook currently offering the best moneyline for the flagged side. Always bet at the best available price. Backtest ROI is calculated using the best line available ~2h pre-game — the same window used by the live dashboard.</dd>
+          <dt>Model Prob</dt><dd>Home win probability averaged across all six models (V1 LR, V1 LGBM, V2 LR, V2 LGBM, V3 LR, V3 LGBM). Best calibration: slope 1.007, ECE 0.0154.</dd>
+          <dt>Edge</dt><dd>Gap between the model probability and Vegas implied probability. Larger = model disagrees more with the market.</dd>
+          <dt>Strong</dt><dd>V1+V2 all 4 models ≥10% de-vigged away. Gold badge. 101 bets, +40.5% ROI, Sharpe 3.3.</dd>
+          <dt>High Edge</dt><dd>All 6 models ≥9% de-vigged away, spread ≤6%. Orange badge. 93 bets, +38.0% ROI, Sharpe 2.8.</dd>
+          <dt>Consensus Edge</dt><dd>All 6 models ≥7% de-vigged away, spread ≤6%. Cyan badge. 165 bets, +35.8% ROI, Sharpe 3.7.</dd>
+          <dt>Warm Edge</dt><dd>V1+V2 ≥8% de-vigged away, spread ≤8%, temp ≥70°F. Amber badge. 160 bets, +33.9% ROI, Sharpe 3.5.</dd>
+          <dt>Home Edge</dt><dd>V1+V2 ≥4% de-vigged home, spread ≤4%. Green badge. 1u. 432 bets, +12.2% ROI, Sharpe 2.4.</dd>
+          <dt>Narrow Edge</dt><dd>V1+V2 home ≥5% + gate (fatigue OR low park). Purple badge. 0.5u. 365 bets, +12.0% ROI, Sharpe 2.1.</dd>
+          <dt>🔥 Fatigued</dt><dd>Opposing bullpen heavy 2-day pitch count. Badge fires on any tier — materially improves ROI.</dd>
+          <dt>Vegas Implied</dt><dd>Home win probability derived from the median moneyline across sportsbooks.</dd>
+          <dt>Best Odds</dt><dd>The sportsbook offering the best moneyline for the flagged side.</dd>
         </dl>
       </div>
 
@@ -1025,33 +1087,28 @@
       <div class="glossary-group">
         <div class="glossary-heading">Historical Performance Summary</div>
         <div class="glossary-text" style="font-family:var(--mono);font-size:11px;line-height:1.8">
-          <strong>Out-of-Sample (2023-2025) — verified with pre-game odds (~2h before game via Odds API):</strong><br><br>
-          <strong style="color:#ffd700">── STRONG (highest conviction) ──</strong><br>
-          <span style="color:#ffd700">STRONG:</span> 112 bets · 59.8% win · +46.3% ROI · +51.8u · Sharpe 5.11 · ~37/yr &nbsp; <span style="color:#555">(2023: +39% · 2024: +69% · 2025: +32%)</span><br><br>
-          <strong style="color:#00ccff">── PRIME / STANDARD (V1 + V2 agreement) ──</strong><br>
-          <span style="color:#00ccff">PRIME (exclusive):</span> ~56 bets · +38.3% ROI · Sharpe 4.50 &nbsp; <span style="color:#555">(2023: +44% · 2024: +45% · 2025: +28%)</span><br>
-          <span style="color:#00ccff">STANDARD (exclusive):</span> ~36 bets · +31.6% ROI · Sharpe 3.66 &nbsp; <span style="color:#555">(2023: +27% · 2024: +41% · 2025: +26%)</span><br>
-          <span style="color:#00ccff">ALL AWAY (unique):</span> 204 bets · 57.4% win · +36.2% ROI · +73.8u · Sharpe 4.18 · ~68/yr &nbsp; <span style="color:#555">(2023: +31% · 2024: +44% · 2025: +32%)</span><br><br>
-          <strong style="color:#b388ff">── NARROW EDGE (home bet, half-unit 0.5u) ──</strong><br>
-          <span style="color:#b388ff">NARROW EDGE:</span> 193 bets · 53.9% win · +18.9% ROI · +36.4u · P(profitable) 98.8% · Sharpe 2.34 · ~64/yr &nbsp; <span style="color:#555">(2023: +10% · 2024: +6% · 2025: +43% — all 3 years positive)</span><br>
-          <span style="color:#b388ff">&nbsp;&nbsp;Signal gate:</span> <span style="color:#555">bullpen fatigue &gt; 0 OR pitcher-friendly park. No V2 spread filter (counterproductive for home bets).</span><br>
-          <span style="color:#b388ff">&nbsp;&nbsp;★ STRONG SPOT (≥3 confirm):</span> <span style="color:#555">informational badge — subsample too small for independent CI</span><br>
-          <span style="color:#b388ff">FULL SYSTEM (1u away + 0.5u home):</span> 397 bets · +30.6% ROI · +92.0u · Sharpe 3.66 · ~132/yr &nbsp; <span style="color:#555">(2023: +23% · 2024: +34% · 2025: +35% — all years positive, P(profitable): 100%)</span><br>
-          <span style="color:#555">NARROW EDGE adds 95% more volume and 25% more profit vs away-only. Zero overlap with away tiers. Half-unit sizing. CI above zero [+2.5%, +34.9%].</span><br><br>
-          <strong style="color:#ff4444">── WHY DUAL-MODEL AGREEMENT MATTERS ──</strong><br>
-          <span style="color:#888">V1 ONLY (V2 doesn't flag):</span> 215 bets · 47.0% win · +1.4% ROI &nbsp; <span style="color:#555">(marginal — do not bet)</span><br>
-          <span style="color:#555">Single-generation flags are not actionable. Only bet when both model generations agree.</span><br><br>
-          <strong style="color:#ff4444">── BRIER SCORE: MODEL vs VEGAS (OOS 2023-2025) ──</strong><br>
-          <span style="color:#555">Brier score measures probability calibration — lower is better. 0 = perfect, 0.25 = coin-flip.</span><br>
-          <span style="color:#888">All 7,180 games:</span> Model 0.2437 · Vegas 0.2436 · <span style="color:#555">essentially tied — the model is not a better overall forecaster</span><br>
-          <span style="color:#00ff88">Flagged games (440):</span> Model 0.2512 · Vegas 0.2789 · <strong style="color:#00ff88">model 9.9% better</strong> <span style="color:#555">— the agreement filter identifies games where Vegas is most off</span><br>
-          <span style="color:#555">&nbsp;&nbsp;Away tiers: model says 45.5% home win → actual 45.8% &nbsp;|&nbsp; Vegas says 60.7% — badly miscalibrated</span><br>
-          <span style="color:#555">&nbsp;&nbsp;Narrow Edge: model says 57.4% home win → actual 54.0% &nbsp;|&nbsp; Vegas says 44.8%</span><br>
-          <span style="color:#555">&nbsp;&nbsp;STRONG tier has the largest Brier gap (0.240 vs 0.289) — highest-conviction bets are where Vegas is most wrong</span><br><br>
-          <span style="color:#555">V1: LR (C=0.5) + LGBM · 36 features · trained 2001-2022 · flat 1u staking<br>
-          V2: LR (C=0.001) + LGBM · 35 features (pruned from 98 expanded candidates incl. travel, bullpen fatigue, platoon) · trained 2001-2021 · sub-models checked individually (75/25 blend not used)<br>
-          Overlap: Jaccard ~0.33 · Prob corr 0.96 · Edge corr 0.88 · ~50% of flags shared<br>
-          Odds: verified with pre-game lines (~2h before first pitch) via Odds API historical endpoint · best available across 15-20 US sportsbooks · same timing window as live dashboard</span>
+          <strong>Out-of-Sample (2023-2025) — modal de-vigged odds, consistent methodology:</strong><br><br>
+          <strong style="color:#ffd700">── AWAY TIERS (1u each) ──</strong><br>
+          <span style="color:#ffd700">STRONG:</span> 101 bets · 58.4% win · +40.5% ROI · Sharpe 3.3 · P(+) 100% &nbsp; <span style="color:#555">(2023: +31% · 2024: +80% · 2025: +16%)</span><br>
+          <span style="color:#ff6b35">HIGH EDGE:</span> 93 bets · 55.9% win · +38.0% ROI · Sharpe 2.8 · P(+) 100% &nbsp; <span style="color:#555">(2023: +29% · 2024: +72% · 2025: +10%)</span><br>
+          <span style="color:#00ccff">CONSENSUS EDGE:</span> 165 bets · 57.0% win · +35.8% ROI · Sharpe 3.7 · P(+) 100% &nbsp; <span style="color:#555">(2023: +23% · 2024: +59% · 2025: +24%)</span><br>
+          <span style="color:#ff9800">WARM EDGE:</span> 160 bets · 56.2% win · +33.9% ROI · Sharpe 3.5 · P(+) 100% &nbsp; <span style="color:#555">(2023: +27% · 2024: +54% · 2025: +22%)</span><br><br>
+          <strong style="color:#4caf50">── HOME TIERS ──</strong><br>
+          <span style="color:#4caf50">HOME EDGE (1u):</span> 432 bets · 54.9% win · +12.2% ROI · Sharpe 2.4 · P(+) 99% &nbsp; <span style="color:#555">(2023: +7% · 2024: +16% · 2025: +14%)</span><br>
+          <span style="color:#b388ff">NARROW EDGE (0.5u):</span> 365 bets · 53.4% win · +12.0% ROI · Sharpe 2.1 · P(+) 98% &nbsp; <span style="color:#555">(2023: +7% · 2024: +3% · 2025: +25%)</span><br><br>
+          <strong style="color:#ff6b00">── 🔥 FATIGUE OVERLAY (badge modifier on any tier) ──</strong><br>
+          <span style="color:#ff6b00">CONSENSUS + FATIGUE:</span> 98 bets · 62.2% win · +54.0% ROI · Sharpe 4.2<br>
+          <span style="color:#ff6b00">WARM + FATIGUE:</span> 101 bets · 61.4% win · +50.5% ROI · Sharpe 4.0<br>
+          <span style="color:#ff6b00">HOME + FATIGUE:</span> 202 bets · 60.4% win · +21.8% ROI · Sharpe 3.0<br><br>
+          <strong style="color:#555">── DROPPED TIERS ──</strong><br>
+          <span style="color:#555">STANDARD: 27 bets, CI [-25%, +34%], 73% P(+) — not reliable. Removed.</span><br>
+          <span style="color:#555">PRIME: Redundant with CONSENSUS EDGE (63% overlap). Removed.</span><br>
+          <span style="color:#555">6M STRONG: Subsumed by CONSENSUS EDGE at consistent odds. Removed.</span><br><br>
+          <span style="color:#555">V1: LR (C=0.5) + LGBM · 36 features · trained ≤ 2022<br>
+          V2: LR (C=0.001) + LGBM · 35 features · trained ≤ 2021<br>
+          V3: LR (C=0.001) + LGBM · 35 features · walk-forward through 2025<br>
+          Display: 6-blend (equal weight V1/V2/V3 LR+LGBM) · calibration slope 1.007<br>
+          All figures: modal de-vigged odds · consistent methodology across all tiers</span>
         </div>
       </div>
 
