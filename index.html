@@ -547,6 +547,34 @@
     -webkit-overflow-scrolling: touch;
   }
 
+  /* ── MOBILE GAME CARDS (hidden on desktop) ── */
+  .show-mobile-only { display: none; }
+  .m-game-cards { padding: 4px 8px; display: flex; flex-direction: column; gap: 6px; }
+  .m-game-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+  }
+  .m-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .m-card-matchup { font-size: 12px; font-weight: 500; }
+  .m-card-at { color: var(--dim); font-size: 10px; margin: 0 4px; }
+  .m-card-starters { font-size: 10px; color: var(--dim); margin-top: 2px; }
+  .m-card-signal { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .m-card-stats {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .m-card-stat { }
+  .m-card-lbl { font-size: 8px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dim); }
+  .m-card-val { font-family: var(--mono); font-size: 11px; margin-top: 1px; }
+
   /* ── MOBILE RESPONSIVE ── */
   @media (max-width: 600px) {
 
@@ -655,9 +683,10 @@
     }
     .num { font-size: 11px; }
 
-    /* Game table: hide less essential columns on mobile */
-    .team-cell { min-width: 120px; }
+    /* Game table: swap to card layout on mobile */
     .hide-mobile { display: none; }
+    .hide-mobile-block { display: none !important; }
+    .show-mobile-only { display: block !important; }
 
     /* Glossary: stack dt/dd vertically on mobile */
     .glossary {
@@ -683,7 +712,7 @@
 <header class="header">
   <div class="header-left">
     <div class="logo">⚾ MLB Edge</div>
-    <div class="header-date">2026-03-25 · 3-Generation · 6-Model Consensus · Updated Mar 25, 06:32 PM</div>
+    <div class="header-date">2026-03-25 · 3-Generation · 6-Model Consensus · Updated Mar 25, 08:00 PM</div>
   </div>
   <div class="header-stats">
     <div class="hstat">
@@ -724,7 +753,7 @@
       <div class="section-title">Today's Games</div>
       <div class="section-meta">1 games · sorted by edge</div>
     </div>
-    <div class="table-wrap">
+    <div class="table-wrap hide-mobile-block">
       <table>
         <thead>
           <tr>
@@ -759,6 +788,24 @@
         </tr>
         </tbody>
       </table>
+    </div>
+    <div class="m-game-cards show-mobile-only">
+      
+        <div class="m-game-card" style="">
+          <div class="m-card-top">
+            <div>
+              <div class="m-card-matchup">New York Yankees <span class="m-card-at">@</span> San Francisco Giants <span style="color:#ff4444;font-size:9px" title="Roster unknown">✗</span></div>
+              <div class="m-card-starters">Max Fried vs Logan Webb</div>
+            </div>
+            <div class="m-card-signal"><span style="color:#556677;font-size:10px">away</span><span class="bell-tip" data-tip="6 models · spread σ=3.4% · blend 99% range: 35.5%–43.7%"><svg width="40" height="22" style="vertical-align:middle;margin-left:4px"><path d="M 0,22 L 0.0,21.8 L 1.7,21.6 L 3.3,21.2 L 5.0,20.6 L 6.7,19.6 L 8.3,18.1 L 10.0,16.1 L 11.7,13.7 L 13.3,11.1 L 15.0,8.4 L 16.7,6.1 L 18.3,4.5 L 20.0,4.0 L 21.7,4.5 L 23.3,6.1 L 25.0,8.4 L 26.7,11.1 L 28.3,13.7 L 30.0,16.1 L 31.7,18.1 L 33.3,19.6 L 35.0,20.6 L 36.7,21.2 L 38.3,21.6 L 40.0,21.8 L 40,22 Z" fill="#ff6b35" opacity="0.15"/><path d="M 0.0,21.8 L 1.7,21.6 L 3.3,21.2 L 5.0,20.6 L 6.7,19.6 L 8.3,18.1 L 10.0,16.1 L 11.7,13.7 L 13.3,11.1 L 15.0,8.4 L 16.7,6.1 L 18.3,4.5 L 20.0,4.0 L 21.7,4.5 L 23.3,6.1 L 25.0,8.4 L 26.7,11.1 L 28.3,13.7 L 30.0,16.1 L 31.7,18.1 L 33.3,19.6 L 35.0,20.6 L 36.7,21.2 L 38.3,21.6 L 40.0,21.8" fill="none" stroke="#ff6b35" stroke-width="0.8" opacity="0.5"/><path d="M 0,22 L 0.0,22.0 L 1.7,22.0 L 3.3,22.0 L 5.0,22.0 L 6.7,22.0 L 8.3,22.0 L 10.0,22.0 L 11.7,21.8 L 13.3,21.1 L 15.0,18.7 L 16.7,13.5 L 18.3,7.0 L 20.0,4.0 L 21.7,7.0 L 23.3,13.5 L 25.0,18.7 L 26.7,21.1 L 28.3,21.8 L 30.0,22.0 L 31.7,22.0 L 33.3,22.0 L 35.0,22.0 L 36.7,22.0 L 38.3,22.0 L 40.0,22.0 L 40,22 Z" fill="#ff6b35" opacity="0.35"/><path d="M 0.0,22.0 L 1.7,22.0 L 3.3,22.0 L 5.0,22.0 L 6.7,22.0 L 8.3,22.0 L 10.0,22.0 L 11.7,21.8 L 13.3,21.1 L 15.0,18.7 L 16.7,13.5 L 18.3,7.0 L 20.0,4.0 L 21.7,7.0 L 23.3,13.5 L 25.0,18.7 L 26.7,21.1 L 28.3,21.8 L 30.0,22.0 L 31.7,22.0 L 33.3,22.0 L 35.0,22.0 L 36.7,22.0 L 38.3,22.0 L 40.0,22.0" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.8"/><line x1="20.0" y1="20" x2="20.0" y2="22" stroke="#ffffff" stroke-width="1" opacity="0.6"/></svg></span></div>
+          </div>
+          <div class="m-card-stats">
+            <div class="m-card-stat"><div class="m-card-lbl">Model</div><div class="m-card-val">39.6%</div></div>
+            <div class="m-card-stat"><div class="m-card-lbl">Vegas</div><div class="m-card-val">47.1%</div></div>
+            <div class="m-card-stat"><div class="m-card-lbl">Edge</div><div class="m-card-val" style="color:#ffc107;font-weight:600">-7.5%</div></div>
+            <div class="m-card-stat"><div class="m-card-lbl">Line</div><div class="m-card-val dim">+104 / -122</div></div>
+          </div>
+        </div>
     </div>
   </div>
 
