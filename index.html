@@ -548,8 +548,8 @@
   }
 
   /* ── MOBILE GAME CARDS (hidden on desktop) ── */
-  .show-mobile-only { display: none; }
-  .m-game-cards { padding: 4px 8px; display: flex; flex-direction: column; gap: 6px; }
+  .show-mobile-only { display: none !important; }
+  .m-game-cards { padding: 4px 8px; flex-direction: column; gap: 6px; }
   .m-game-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -686,7 +686,7 @@
     /* Game table: swap to card layout on mobile */
     .hide-mobile { display: none; }
     .hide-mobile-block { display: none !important; }
-    .show-mobile-only { display: block !important; }
+    .show-mobile-only { display: flex !important; }
 
     /* Glossary: stack dt/dd vertically on mobile */
     .glossary {
@@ -741,7 +741,7 @@
 <header class="header">
   <div class="header-left">
     <div class="logo">⚾ MLB Edge</div>
-    <div class="header-date">2026-03-26 · 3-Generation · 6-Model Consensus · Updated Mar 26, 08:51 PM</div>
+    <div class="header-date">2026-03-26 · 3-Generation · 6-Model Consensus · Updated Mar 26, 09:00 PM</div>
   </div>
   <div class="header-stats">
     <div class="hstat">
@@ -1633,7 +1633,7 @@
       <div style="font-size:11px;color:var(--dim);margin-top:2px">11 games · 2026-03-26</div>
     </div>
     <div style="text-align:right;font-size:11px;color:var(--dim)">
-      Updated 08:51 PM<br>
+      Updated 09:00 PM<br>
       Yesterday: <span style="color:#ff4444">no data</span>
     </div>
   </div>
